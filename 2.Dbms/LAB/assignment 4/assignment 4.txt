@@ -1,0 +1,355 @@
+
+mysql> use assignment1;
+Database changed
+mysql> show tables;
++-----------------------+
+| Tables_in_assignment1 |
++-----------------------+
+| class                 |
+| enrolled              |
+| faculty               |
+| student               |
++-----------------------+
+
+
+1)
+
+
+mysql> select level , AVG(age)
+    -> from student
+    -> group by level;
++-------+----------+
+| level | AVG(age) |
++-------+----------+
+| SR    |  20.7143 |
+| JR    |  19.5000 |
+| SO    |  18.4000 |
+| FR    |  17.6667 |
++-------+----------+
+
+
+
+
+2)
+
+
+
+mysql> select level , AVG(age) from student where level <> 'JR' group by level;
++-------+----------+
+| level | AVG(age) |
++-------+----------+
+| SR    |  20.7143 |
+| SO    |  18.4000 |
+| FR    |  17.6667 |
++-------+----------+
+
+
+
+
+3)
+
+
+mysql> select fname , COUNT(*) as total_classes
+    -> from faculty , class
+    -> where faculty.fid = class.fid
+    -> group by faculty.fname;
++------------------+---------------+
+| fname            | total_classes |
++------------------+---------------+
+| John Williams    |             3 |
+| Elizabeth Taylor |             2 |
+| Mary Johnson     |             1 |
+| Ivana Teach      |             1 |
+| William Moore    |             1 |
+| Barbara Wilson   |             2 |
+| Patricia Jones   |             1 |
+| Robert Brown     |             1 |
+| Richard Jackson  |             6 |
+| Linda Davis      |             2 |
+| Jennifer Thomas  |             1 |
++------------------+---------------+
+
+
+
+
+4)
+
+
+
+mysql> select sname , student.snum
+    -> from student ,enrolled
+    -> where student.snum = enrolled.snum and
+    -> cname = 'Database Systems' and enrolled.snum not in
+    -> (select snum
+    -> from enrolled
+    -> where cname = 'Operating System Design');
++-----------+-----------+
+| sname     | snum      |
++-----------+-----------+
+| Paul Hall | 348121549 |
++-----------+-----------+
+
+
+5)
+
+
+ select distinct e.cname ,avg(age) average_age
+    -> from student s , enrolled e
+    -> where e.snum = s.snum
+    -> group by e.cname
+    -> having count(distinct e.snum) >=2;
++-------------------------+-------------+
+| cname                   | average_age |
++-------------------------+-------------+
+| Database Systems        |     18.6000 |
+| Operating System Design |     18.3333 |
++-------------------------+-------------+
+
+
+6)
+
+mysql> select DISTINCT faculty.fid
+    -> from faculty
+    -> where ( select COUNT(fid) from class where faculty.fid = class.fid ) >= 2;
++-----------+
+| fid       |
++-----------+
+|  11564812 |
+|  90873519 |
+| 248965255 |
+| 489221823 |
+| 489456522 |
++-----------+
+
+ select distinct f.fid  , count(c.name)
+    -> from faculty f , class c
+    -> where f.fid = c.fid
+    -> group by c.fid
+    -> having count(c.name) >=2;
++-----------+---------------+
+| fid       | count(c.name) |
++-----------+---------------+
+|  11564812 |             3 |
+|  90873519 |             2 |
+| 248965255 |             2 |
+| 489221823 |             6 |
+| 489456522 |             2 |
++-----------+---------------+
+5 rows in set (0.00 sec)
+
+
+
+
+
+
+7)
+
+mysql> select DISTINCT student.snum
+    -> from student
+    -> where ( select COUNT(enrolled.snum) from enrolled where enrolled.snum = student.snum ) >= 2;
++-----------+
+| snum      |
++-----------+
+| 112348546 |
+| 115987938 |
+| 301221823 |
+| 322654189 |
+| 455798411 |
+| 552455318 |
+| 567354612 |
++-----------+
+
+
+ select distinct s.snum , count(e.cname)
+    -> from enrolled e ,student s
+    -> where e.snum = s.snum
+    -> group by s.snum
+    -> having count(e.cname) >=2;
++-----------+----------------+
+| snum      | count(e.cname) |
++-----------+----------------+
+| 112348546 |              2 |
+| 115987938 |              2 |
+| 322654189 |              2 |
+| 552455318 |              3 |
+| 455798411 |              2 |
+| 567354612 |              2 |
+| 301221823 |              3 |
++-----------+----------------+
+
+
+
+
+
+
+8)
+
+mysql> select * from student order by age ASC;
++-----------+--------------------+------------------------+-------+------+
+| snum      | sname              | major                  | level | age  |
++-----------+--------------------+------------------------+-------+------+
+| 320874981 | Daniel Lee         | Electrical Engineering | FR    |   17 |
+| 322654189 | Lisa Walker        | Computer Science       | SO    |   17 |
+| 455798411 | Luis Hernandez     | Electrical Engineering | FR    |   17 |
+| 269734834 | Thomas Robinson    | Psychology             | SO    |   18 |
+| 280158572 | Margaret Clark     | Animal Science         | FR    |   18 |
+| 318548912 | Dorthy Lewis       | Finance                | FR    |   18 |
+| 348121549 | Paul Hall          | Computer Science       | JR    |   18 |
+| 451519864 | Mark Young         | Finance                | FR    |   18 |
+| 567354612 | Karen Scott        | Computer Engineering   | FR    |   18 |
+| 112348546 | Joseph Thompson    | Computer Science       | SO    |   19 |
+| 351565322 | Nancy Allen        | Accounting             | JR    |   19 |
+| 462156489 | Donald King        | Mechanical Engineering | SO    |   19 |
+| 552455318 | Ana Lopez          | Computer Engineering   | SR    |   19 |
+| 573284895 | Steven Green       | Kinesiology            | SO    |   19 |
+|  99354543 | Susan Martin       | Law                    | JR    |   20 |
+| 115987938 | Christopher Garcia | Computer Science       | JR    |   20 |
+| 132977562 | Angela Martinez    | History                | SR    |   20 |
+| 301221823 | Juan Rodriguez     | Psychology             | JR    |   20 |
+| 574489456 | Betty Adams        | Economics              | JR    |   20 |
+|  51135593 | Maria White        | English                | SR    |   21 |
+| 550156548 | George Wright      | Education              | SR    |   21 |
+| 556784565 | Kenneth Hill       | Civil Engineering      | SR    |   21 |
+| 578875478 | Edward Baker       | Veterinary Medicine    | SR    |   21 |
+|  60839453 | Charles Harris     | Architecture           | SR    |   22 |
++-----------+--------------------+------------------------+-------+------+
+
+
+
+
+9)
+
+
+mysql> select sname, snum
+    -> from student
+    -> where major like '%Engineering';
++----------------+-----------+
+| sname          | snum      |
++----------------+-----------+
+| Daniel Lee     | 320874981 |
+| Luis Hernandez | 455798411 |
+| Donald King    | 462156489 |
+| Ana Lopez      | 552455318 |
+| Kenneth Hill   | 556784565 |
+| Karen Scott    | 567354612 |
++----------------+-----------+
+
+
+
+10)
+
+
+mysql> select major , COUNT(*) as total_no_of_students
+    -> from student
+    -> where major like '%Engineering'
+    -> group by major;
++------------------------+----------------------+
+| major                  | total_no_of_students |
++------------------------+----------------------+
+| Electrical Engineering |                    2 |
+| Mechanical Engineering |                    1 |
+| Computer Engineering   |                    2 |
+| Civil Engineering      |                    1 |
++------------------------+----------------------+
+
+
+11)
+
+mysql> select DISTINCT fname , faculty.fid
+    -> from faculty , class
+    -> where class.fid = faculty.fid and (name = 'Data Structure' or name = 'Operating System Design');
++-------------+-----------+
+| fname       | fid       |
++-------------+-----------+
+| Linda Davis | 489456522 |
++-------------+-----------+
+
+
+select distinct f.fname , f.fid
+    -> from faculty f , class c
+    -> where f.fid = c.fid and
+    -> c.name in ("Data Structures","Operating System Design");
++-------------+-----------+
+| fname       | fid       |
++-------------+-----------+
+| Linda Davis | 489456522 |
++-------------+-----------+
+
+
+
+12)
+
+
+mysql> select DISTINCT fname , faculty.fid
+    -> from faculty , class
+    -> where class.fid = faculty.fid and deptid = 20;
++--------------+-----------+
+| fname        | fid       |
++--------------+-----------+
+| Mary Johnson | 141582651 |
+| Ivana Teach  | 142519864 |
+| Linda Davis  | 489456522 |
++--------------+-----------+
+
+
+
+
+13)
+
+
+mysql> select sname,snum
+    -> from student
+    -> where student.snum not in(
+    -> select enrolled.snum
+    -> from enrolled);
++-----------------+-----------+
+| sname           | snum      |
++-----------------+-----------+
+| Maria White     |  51135593 |
+| Charles Harris  |  60839453 |
+| Angela Martinez | 132977562 |
+| Thomas Robinson | 269734834 |
+| Margaret Clark  | 280158572 |
+| Dorthy Lewis    | 318548912 |
+| Daniel Lee      | 320874981 |
+| Nancy Allen     | 351565322 |
+| Mark Young      | 451519864 |
+| Donald King     | 462156489 |
+| George Wright   | 550156548 |
+| Steven Green    | 573284895 |
+| Edward Baker    | 578875478 |
++-----------------+-----------+
+
+
+
+14)
+
+
+mysql> select age from student
+    -> where sname like '% H_%';
++------+
+| age  |
++------+
+|   22 |
+|   18 |
+|   17 |
+|   21 |
++------+
+
+
+
+15)
+
+mysql> select level ,MIN(age)
+    -> from student
+    -> where age >=18
+    -> group by level
+    -> having COUNT(*) >=2;
++-------+----------+
+| level | MIN(age) |
++-------+----------+
+| SR    |       19 |
+| JR    |       18 |
+| SO    |       18 |
+| FR    |       18 |
++-------+----------+

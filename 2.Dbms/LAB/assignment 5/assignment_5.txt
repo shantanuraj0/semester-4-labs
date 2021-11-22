@@ -1,0 +1,219 @@
+1.
+
+ select name1 , age1
+    -> from(
+    -> (select sname, age
+    -> from student
+    -> where major='English')
+    -> union
+    -> (
+    -> select sname, age
+    -> from student s , class c , faculty f ,enrolled e
+    -> where e.snum = s.snum and c.name = e.cname and f.fid = c.fid and f.fname='Ivana Teach')
+    -> ) as stud(name1 , age1)
+    -> where age1 = (select min(age2) from (
+    -> (select sname, age
+    -> from student
+    -> where major ='English')
+    -> union
+    -> (
+    -> select sname, age
+    ->  from student s , class c , faculty f ,enrolled e
+    -> where e.snum = s.snum and c.name = e.cname and f.fid = c.fid and f.fname='Ivana Teach')
+    -> ) as stud(name2, age2));
++-------------+------+
+| name1       | age1 |
++-------------+------+
+| Lisa Walker |   17 |
++-------------+------+
+
+
+
+
+
+
+
+
+ select s.sname , s.age from student s , class c,enrolled e, faculty f
+    -> where s.snum=e.snum and e.cname =c.name and c.fid=f.fid and (major ='English' or F.fname = 'Ivana Teach')
+    -> and s.age = (  select MIN(s1.age) from student s1 , class c1, enrolled e1 , faculty f1
+    -> where s1.snum = e1.snum and c1.fid = f1.fid and e1.cname = c1.name and (s1.major = 'English' or f1.fname = 'Ivana Teach'));
++-------------+------+
+| sname       | age  |
++-------------+------+
+| Lisa Walker |   17 |
++-------------+------+
+
+
+
+
+2. 
+
+ SELECT C.name
+    -> FROM Class C
+    -> WHERE C.room ='R128' OR C.name IN(SELECT E.cname
+    -> FROM Enrolled E
+    ->  GROUP BY E.cname
+    ->  HAVING COUNT(*) < 3);
++----------------------------+
+| name                       |
++----------------------------+
+| Air Quality Engineering    |
+| American Political Parties |
+| Archaeology of the Incas   |
+| Communication Networks     |
+| Dairy Herd Management      |
+| Data Structures            |
+| Introduction to Math       |
+| Optical Electronics        |
+| Patent Law                 |
+| Perception                 |
+| Social Cognition           |
+| Urban Economics            |
++----------------------------+
+
+
+ select c.name from class c
+    -> where c.room="R128" or (
+    -> select count(e.snum) from enrolled e
+    -> where c.name = e.cname
+    -> group by e.cname
+    -> having count(e.snum) <=3);
++----------------------------+
+| name                       |
++----------------------------+
+| Air Quality Engineering    |
+| American Political Parties |
+| Archaeology of the Incas   |
+| Communication Networks     |
+| Dairy Herd Management      |
+| Data Structures            |
+| Introduction to Math       |
+| Optical Electronics        |
+| Patent Law                 |
+| Perception                 |
+| Social Cognition           |
+| Urban Economics            |
++----------------------------+
+
+
+
+3.
+
+ SELECT S.age, S.level
+    -> FROM Student S
+    -> GROUP BY S.age, S.level
+    ->  HAVING S.level IN(
+    -> SELECT S1.level
+    -> FROM Student S1
+    -> WHERE S1.age = S.age
+    -> GROUP BY S1.level, S1.age
+    -> HAVING COUNT(*) >= ALL(
+    ->  SELECT COUNT(*)
+    ->  FROM Student S2
+    -> WHERE S1.age = S2.age
+    -> GROUP BY S2.level, S2.age));
++------+-------+
+| age  | level |
++------+-------+
+|   21 | SR    |
+|   22 | SR    |
+|   20 | JR    |
+|   19 | SO    |
+|   18 | FR    |
+|   17 | FR    |
++------+-------+
+
+
+
+4.
+
+ select fname
+    -> from faculty f , class c
+    -> where f.fid = c.fid and name like 'O%' and room='R15'
+    -> and name IN(
+    -> select e.cname from enrolled e);
++----------------+
+| fname          |
++----------------+
+| Patricia Jones |
++----------------+
+
+
+select f.fname from faculty f , class c
+    -> where f.fid  = c.fid and c.name like "O%" and c.room = "R15" and (
+    -> select count(e.snum) from enrolled e where e.cname = c.name
+    -> having count(e.snum)>=1);
++----------------+
+| fname          |
++----------------+
+| Patricia Jones |
++----------------+
+
+
+
+5. 
+
+ select * from student s
+    -> where level='SR' and snum IN(
+    -> select e.snum from enrolled e
+    -> ,class c
+    -> where e.cname = c.name  and c.room = 'R15' );
++-----------+--------------+-------------------+-------+------+
+| snum      | sname        | major             | level | age  |
++-----------+--------------+-------------------+-------+------+
+| 556784565 | Kenneth Hill | Civil Engineering | SR    |   21 |
++-----------+--------------+-------------------+-------+------+
+
+
+
+
+mysql> select * from student s
+    -> where level="SR" and (
+    -> select count(e.snum) from  enrolled e , class c
+    -> where e.snum = s.snum and c.room ="R15" and e.cname = c.name
+    -> group by e.cname
+    -> having count(e.snum) >=1);
++-----------+--------------+-------------------+-------+------+
+| snum      | sname        | major             | level | age  |
++-----------+--------------+-------------------+-------+------+
+| 556784565 | Kenneth Hill | Civil Engineering | SR    |   21 |
++-----------+--------------+-------------------+-------+------+
+
+6.
+select c.name from class c
+    -> where (c.name like 'O%s' or c.name like 'A%s') and c.name not IN (
+    -> select e.cname from enrolled e);
++--------------------------+
+| name                     |
++--------------------------+
+| Archaeology of the Incas |
+| Orbital Mechanics        |
++--------------------------+
+
+
+
+7.
+
+select fname, Faculty.fid, count(Class.fid) as num_classes from Faculty left join Class on Faculty.fid = Class.fid group by Faculty.fid;
+
++------------------+-----------+-------------+
+| fname            | fid       | num_classes |
++------------------+-----------+-------------+
+| John Williams    |  11564812 |           3 |
+| Elizabeth Taylor |  90873519 |           2 |
+| Mary Johnson     | 141582651 |           1 |
+| Ivana Teach      | 142519864 |           1 |
+| William Moore    | 159542516 |           1 |
+| James Smith      | 242518965 |           0 |
+| Barbara Wilson   | 248965255 |           2 |
+| Patricia Jones   | 254099823 |           1 |
+| Michael Miller   | 287321212 |           0 |
+| Robert Brown     | 356187925 |           1 |
+| David Anderson   | 486512566 |           0 |
+| Richard Jackson  | 489221823 |           6 |
+| Linda Davis      | 489456522 |           2 |
+| Ulysses Teach    | 548977562 |           0 |
+| Jennifer Thomas  | 619023588 |           1 |
++------------------+-----------+-------------+
+

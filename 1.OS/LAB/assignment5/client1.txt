@@ -1,0 +1,263 @@
+login as: shantanu_raj
+Authenticating with public key "imported-openssh-key"
+Welcome to Ubuntu 18.04.1 LTS (GNU/Linux 5.4.0-1035-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Thu Mar 11 17:17:17 IST 2021
+
+  System load:  0.0                Processes:           166
+  Usage of /:   6.9% of 310.15GB   Users logged in:     5
+  Memory usage: 7%                 IP address for eth0: 172.26.8.158
+  Swap usage:   0%
+
+ * Introducing self-healing high availability clusters in MicroK8s.
+   Simple, hardened, Kubernetes for production, from RaspberryPi to DC.
+
+     https://microk8s.io/high-availability
+
+  Get cloud support with Ubuntu Advantage Cloud Guest:
+    http://www.ubuntu.com/business/services/cloud
+
+ * Canonical Livepatch is available for installation.
+   - Reduce system reboots and improve kernel security. Activate at:
+     https://ubuntu.com/livepatch
+
+126 packages can be updated.
+0 updates are security updates.
+
+New release '20.04.2 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+*** System restart required ***
+Last login: Thu Mar 11 17:01:47 2021 from 14.139.197.66
+shantanu_raj@ip-172-26-8-158:~$ cd lab5
+shantanu_raj@ip-172-26-8-158:~/lab5$ wget -P test2 -nd -p localhost:7183/index.h                                                                                                             tml
+--2021-03-11 17:23:37--  http://localhost:7183/index.html
+Resolving localhost (localhost)... 127.0.0.1
+Connecting to localhost (localhost)|127.0.0.1|:7183... failed: Connection refuse                                                                                                             d.
+shantanu_raj@ip-172-26-8-158:~/lab5$ wget -P test2 -nd -p localhost:7183/index.h                                                                                                             tml
+--2021-03-11 17:26:52--  http://localhost:7183/index.html
+Resolving localhost (localhost)... 127.0.0.1
+Connecting to localhost (localhost)|127.0.0.1|:7183... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘test2/index.html’
+
+index.html              [ <=>                ]   1.25K  --.-KB/s    in 0s
+
+2021-03-11 17:26:52 (185 MB/s) - ‘test2/index.html’ saved [1282]
+
+Loading robots.txt; please ignore errors.
+--2021-03-11 17:26:52--  http://localhost:7183/robots.txt
+Connecting to localhost (localhost)|127.0.0.1|:7183... connected.
+HTTP request sent, awaiting response... 404 File Not Found
+2021-03-11 17:26:52 ERROR 404: File Not Found.
+
+--2021-03-11 17:26:52--  http://localhost:7183/clarke-memorial-fountain-thumb.jp                                                                                                             g
+Connecting to localhost (localhost)|127.0.0.1|:7183... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/jpeg]
+Saving to: ‘test2/clarke-memorial-fountain-thumb.jpg’
+
+clarke-memorial-fou     [ <=>                ]   7.21K  --.-KB/s    in 0s
+
+2021-03-11 17:26:52 (466 MB/s) - ‘test2/clarke-memorial-fountain-thumb.jpg’ save                                                                                                             d [7379]
+
+--2021-03-11 17:26:52--  http://localhost:7183/clarke-memorial-fountain-1024x768                                                                                                             .jpg
+Connecting to localhost (localhost)|127.0.0.1|:7183... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/jpeg]
+Saving to: ‘test2/clarke-memorial-fountain-1024x768.jpg’
+
+clarke-memorial-fou     [ <=>                ] 357.19K  --.-KB/s    in 0.001s
+
+2021-03-11 17:26:52 (344 MB/s) - ‘test2/clarke-memorial-fountain-1024x768.jpg’ s                                                                                                             aved [365758]
+
+--2021-03-11 17:26:52--  http://localhost:7183/grotto-christmas-thumb.jpg
+Connecting to localhost (localhost)|127.0.0.1|:7183... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/jpeg]
+Saving to: ‘test2/grotto-christmas-thumb.jpg’
+
+grotto-christmas-th     [ <=>                ]   6.58K  --.-KB/s    in 0s
+
+2021-03-11 17:26:52 (857 MB/s) - ‘test2/grotto-christmas-thumb.jpg’ saved [6737]
+
+--2021-03-11 17:26:52--  http://localhost:7183/grotto-christmas-1024x768.jpg
+Connecting to localhost (localhost)|127.0.0.1|:7183... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/jpeg]
+Saving to: ‘test2/grotto-christmas-1024x768.jpg’
+
+grotto-christmas-10     [       <=>          ] 326.56K  65.3KB/s    in 5.0s
+
+2021-03-11 17:26:57 (65.3 KB/s) - ‘test2/grotto-christmas-1024x768.jpg’ saved [3                                                                                                             34397]
+
+--2021-03-11 17:26:57--  http://localhost:7183/dome-aerial-thumb.jpg
+Connecting to localhost (localhost)|127.0.0.1|:7183... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/jpeg]
+Saving to: ‘test2/dome-aerial-thumb.jpg’
+
+dome-aerial-thumb.j     [ <=>                ]   8.58K  --.-KB/s    in 0s
+
+2021-03-11 17:26:57 (277 MB/s) - ‘test2/dome-aerial-thumb.jpg’ saved [8783]
+
+--2021-03-11 17:26:57--  http://localhost:7183/dome-aerial-1024x768.jpg
+Connecting to localhost (localhost)|127.0.0.1|:7183... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/jpeg]
+Saving to: ‘test2/dome-aerial-1024x768.jpg’
+
+dome-aerial-1024x76     [ <=>                ] 392.07K  --.-KB/s    in 0.001s
+
+2021-03-11 17:26:57 (464 MB/s) - ‘test2/dome-aerial-1024x768.jpg’ saved [401480]
+
+--2021-03-11 17:26:57--  http://localhost:7183/helmet-thumb.jpg
+Connecting to localhost (localhost)|127.0.0.1|:7183... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/jpeg]
+Saving to: ‘test2/helmet-thumb.jpg’
+
+helmet-thumb.jpg        [ <=>                ]   6.42K  --.-KB/s    in 0s
+
+2021-03-11 17:26:57 (980 MB/s) - ‘test2/helmet-thumb.jpg’ saved [6569]
+
+--2021-03-11 17:26:57--  http://localhost:7183/helmet-1024x768.jpg
+Connecting to localhost (localhost)|127.0.0.1|:7183... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/jpeg]
+Saving to: ‘test2/helmet-1024x768.jpg’
+
+helmet-1024x768.jpg     [ <=>                ] 207.62K  --.-KB/s    in 0s
+
+2021-03-11 17:26:57 (472 MB/s) - ‘test2/helmet-1024x768.jpg’ saved [212607]
+
+--2021-03-11 17:26:57--  http://localhost:7183/dome-basilica-thumb.jpg
+Connecting to localhost (localhost)|127.0.0.1|:7183... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/jpeg]
+Saving to: ‘test2/dome-basilica-thumb.jpg’
+
+dome-basilica-thumb     [ <=>                ]   5.24K  --.-KB/s    in 0s
+
+2021-03-11 17:26:57 (868 MB/s) - ‘test2/dome-basilica-thumb.jpg’ saved [5364]
+
+--2021-03-11 17:26:57--  http://localhost:7183/dome-basilica-1024x768.jpg
+Connecting to localhost (localhost)|127.0.0.1|:7183... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/jpeg]
+Saving to: ‘test2/dome-basilica-1024x768.jpg’
+
+dome-basilica-1024x     [ <=>                ] 160.33K  --.-KB/s    in 0s
+
+2021-03-11 17:26:57 (532 MB/s) - ‘test2/dome-basilica-1024x768.jpg’ saved [16417                                                                                                             9]
+
+--2021-03-11 17:26:57--  http://localhost:7183/jesus-statue-thumb.jpg
+Connecting to localhost (localhost)|127.0.0.1|:7183... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/jpeg]
+Saving to: ‘test2/jesus-statue-thumb.jpg’
+
+jesus-statue-thumb.     [ <=>                ]   7.98K  --.-KB/s    in 0s
+
+2021-03-11 17:26:57 (1.25 GB/s) - ‘test2/jesus-statue-thumb.jpg’ saved [8171]
+
+--2021-03-11 17:26:57--  http://localhost:7183/jesus-statue-1024x768.jpg
+Connecting to localhost (localhost)|127.0.0.1|:7183... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/jpeg]
+Saving to: ‘test2/jesus-statue-1024x768.jpg’
+
+jesus-statue-1024x7     [       <=>          ] 398.46K  79.7KB/s    in 5.0s
+
+2021-03-11 17:27:02 (79.7 KB/s) - ‘test2/jesus-statue-1024x768.jpg’ saved [40802                                                                                                             2]
+
+--2021-03-11 17:27:02--  http://localhost:7183/mary-spring-thumb.jpg
+Connecting to localhost (localhost)|127.0.0.1|:7183... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/jpeg]
+Saving to: ‘test2/mary-spring-thumb.jpg’
+
+mary-spring-thumb.j     [ <=>                ]   8.37K  --.-KB/s    in 0s
+
+2021-03-11 17:27:02 (312 MB/s) - ‘test2/mary-spring-thumb.jpg’ saved [8568]
+
+--2021-03-11 17:27:02--  http://localhost:7183/mary-spring-1024x768.jpg
+Connecting to localhost (localhost)|127.0.0.1|:7183... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/jpeg]
+Saving to: ‘test2/mary-spring-1024x768.jpg’
+
+mary-spring-1024x76     [ <=>                ] 230.69K  --.-KB/s    in 0.001s
+
+2021-03-11 17:27:02 (334 MB/s) - ‘test2/mary-spring-1024x768.jpg’ saved [236229]
+
+--2021-03-11 17:27:02--  http://localhost:7183/sorin-cashore-experimental-thumb.                                                                                                             jpg
+Connecting to localhost (localhost)|127.0.0.1|:7183... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/jpeg]
+Saving to: ‘test2/sorin-cashore-experimental-thumb.jpg’
+
+sorin-cashore-exper     [ <=>                ]   6.50K  --.-KB/s    in 0s
+
+2021-03-11 17:27:02 (873 MB/s) - ‘test2/sorin-cashore-experimental-thumb.jpg’ sa                                                                                                             ved [6659]
+
+--2021-03-11 17:27:02--  http://localhost:7183/sorin-cashore-experimental-1024x7                                                                                                             68.jpg
+Connecting to localhost (localhost)|127.0.0.1|:7183... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/jpeg]
+Saving to: ‘test2/sorin-cashore-experimental-1024x768.jpg’
+
+sorin-cashore-exper     [ <=>                ] 352.69K  --.-KB/s    in 0.001s
+
+2021-03-11 17:27:02 (512 MB/s) - ‘test2/sorin-cashore-experimental-1024x768.jpg’                                                                                                              saved [361151]
+
+--2021-03-11 17:27:02--  http://localhost:7183/stadium-aerial-thumb.jpg
+Connecting to localhost (localhost)|127.0.0.1|:7183... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/jpeg]
+Saving to: ‘test2/stadium-aerial-thumb.jpg’
+
+stadium-aerial-thum     [       <=>          ]   8.33K  1.67KB/s    in 5.0s
+
+2021-03-11 17:27:07 (1.67 KB/s) - ‘test2/stadium-aerial-thumb.jpg’ saved [8533]
+
+--2021-03-11 17:27:07--  http://localhost:7183/stadium-aerial-1024x768.jpg
+Connecting to localhost (localhost)|127.0.0.1|:7183... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/jpeg]
+Saving to: ‘test2/stadium-aerial-1024x768.jpg’
+
+stadium-aerial-1024     [ <=>                ] 356.24K  --.-KB/s    in 0.001s
+
+2021-03-11 17:27:07 (500 MB/s) - ‘test2/stadium-aerial-1024x768.jpg’ saved [3647                                                                                                             90]
+
+--2021-03-11 17:27:07--  http://localhost:7183/stadium-full-thumb.jpg
+Connecting to localhost (localhost)|127.0.0.1|:7183... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/jpeg]
+Saving to: ‘test2/stadium-full-thumb.jpg’
+
+stadium-full-thumb.     [ <=>                ]   7.71K  --.-KB/s    in 0s
+
+2021-03-11 17:27:07 (1.08 GB/s) - ‘test2/stadium-full-thumb.jpg’ saved [7893]
+
+--2021-03-11 17:27:07--  http://localhost:7183/stadium-full-1024x768.jpg
+Connecting to localhost (localhost)|127.0.0.1|:7183... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/jpeg]
+Saving to: ‘test2/stadium-full-1024x768.jpg’
+
+stadium-full-1024x7     [ <=>                ] 489.42K  --.-KB/s    in 0.001s
+
+2021-03-11 17:27:07 (387 MB/s) - ‘test2/stadium-full-1024x768.jpg’ saved [501170                                                                                                             ]
+
+FINISHED --2021-03-11 17:27:07--
+Total wall clock time: 15s
+Downloaded: 21 files, 3.3M in 15s (223 KB/s)
+shantanu_raj@ip-172-26-8-158:~/lab5$

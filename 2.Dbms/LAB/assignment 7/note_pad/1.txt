@@ -1,0 +1,65 @@
+package question1;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
+
+public class Ques_1 {
+
+	public static void main(String[] args) throws SQLException {
+		// TODO Auto-generated method stub
+		Connection connect = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+		
+		 connect= DriverManager.getConnection("jdbc:mysql://localhost:3306/assignment1","root" , "raj123SHANPK45");
+		 
+		 	
+		 statement = connect.createStatement();
+			
+			 resultSet = statement.executeQuery("Show tables");
+		    System.out.println("Tables in the current database: ");
+		    while(resultSet.next()) {
+		         System.out.print(resultSet.getString(1));
+		         System.out.println();
+		      }
+		    
+			 System.out.println("Enter a table name to view: ");
+			 Scanner in = new Scanner(System.in);
+			 String tn = in.next();
+			 
+			 
+			 resultSet = statement.executeQuery("select * from " + tn);
+			 
+			 resultSet = statement.executeQuery("select * from " + tn);
+			    ResultSetMetaData rsmd = resultSet.getMetaData();
+			    
+			    for(int i = 1; i <= rsmd.getColumnCount(); i++)
+		    	{
+		    		System.out.printf("%-40s",rsmd.getColumnName(i));
+		    	}
+			    System.out.println();
+			    
+			    while(resultSet.next()) {
+			    	for(int i = 1; i <= rsmd.getColumnCount(); i++)
+			    	{
+			    		System.out.printf("%-40s",resultSet.getString(i));
+			    	}
+		    		System.out.println();
+			    }	    
+				
+			 
+		
+			 resultSet.close();
+			 statement.close();
+			 connect.close();
+			 in.close();
+			 System.out.println("\nSuccessfully ------done!"); 
+		 
+	}
+
+}

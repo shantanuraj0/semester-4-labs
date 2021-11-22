@@ -1,0 +1,57 @@
+
+Replacement policies :-
+
+
+RANDOM POLICY : 
+
+	when page fault occurs page replacement policies are required , the victim frame is chosen at random.
+	Here we are chosing frames randomly which may leads to replacing wrong pages and hence more page faults occurs.
+
+
+
+CUSTOM POLICY :
+
+	When page fault occurs page replacement policies are required , the victim frame is selected which may be any page that doesn't have RW protection set , but it contains only R .
+	so by selecting non-dirty pages 1 disk input/output is saved . but if we choose wrong page , it may lead to occur more page faults .
+
+
+
+
+FIFO POLICY :
+
+	When page fault occurs page replacement policies are required , the victim frame is selected which remain longest in memory .
+	In FIFO policy , Belady's anomaly has been seen . according to this increasing the number of free frames available , can increase the number of page faults occur.
+
+
+
+
+
+ comparision setup: 
+
+number of pages in page table is 100 and number of frames vary in the range 5 to 100 .
+
+
+commands:   
+		for(( p=5 ; p <=100 ; p= p + 10 )) ; { echo number of frames : $p ; ./virtmem 100 $p rand focus  ; }
+		for(( p=5 ; i <=100 ; p= p + 10 )) ; { echo number of frames : $p ; ./virtmem 100 $p rand sort  ; }
+		for(( p=5 ; p <=100 ; p= p + 10 )) ; { echo number of frames : $p ; ./virtmem 100 $p rand scan  ; }
+
+
+
+		for(( p=5 ; p <=100 ; p= p + 10 )) ; { echo number of frames : $p ; ./virtmem 100 $p fifo focus  ; }
+		for(( p=5 ; i <=100 ; p= p + 10 )) ; { echo number of frames : $p ; ./virtmem 100 $p fifo sort  ; }
+		for(( p=5 ; p <=100 ; p= p + 10 )) ; { echo number of frames : $p ; ./virtmem 100 $p fifo scan  ; }
+
+
+
+		for(( p=5 ; p <=100 ; p= p + 10 )) ; { echo number of frames : $p ; ./virtmem 100 $p custom focus  ; }
+		for(( p=5 ; i <=100 ; p= p + 10 )) ; { echo number of frames : $p ; ./virtmem 100 $p custom sort  ; }
+		for(( p=5 ; p <=100 ; p= p + 10 )) ; { echo number of frames : $p ; ./virtmem 100 $p custom scan  ; }
+
+
+CONCLUSION: 
+
+		Due to belady's anomaly , even after increasing the  number of frames in fifo , there is fixed number of page faults occurs.
+		all the 3 replacement policies are suceptible to belady's anomaly.
+		
+		hence we can say that custom is better than fifo and random. And fifo is better than random. 

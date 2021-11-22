@@ -1,0 +1,49 @@
+The basic idea behind paging is that when a process is swapped in, the pager only loads into memory
+
+those pages that it expects the process to need .Pages that are not loaded into memory are marked as invalid in the page table,
+
+using the invalid bit.
+
+This program consists of the following replacement policies
+1. random
+2. fifo
+3. custom
+
+Let No of pages are 100 in each comparison
+
+COMMAND: ./virtmem 100 <20,30,50> <rand,fifo,custom> sort
+No of pages are 100 in each comparison
+
+             sort_page-faults(no of frames)-->  20        30       50      (no Of Frames)
+rand                                            1360    1133      899
+fifo                                              1300    1000      800
+custom                                         3723    1327      851
+
+COMMAND ________----------->   ./virtmem 100 <20,30,50> <rand,fifo,custom> scan
+
+
+             scan_page-faults(no of frames)-->  20        30       50      (no Of Frames)
+rand                                             1195    1159      982
+fifo                                               1200    1200      1200
+custom                                         1016    920       729
+
+
+No of pages are 100 in each comparison
+
+COMMAND ________----------->   ./virtmem 100 <20,30,50> <rand,fifo,custom> focus
+
+No of pages are 100 in each comparison
+
+COMMAND ________----------->   ./virtmem 100 <20,30,50> <rand,fifo,custom> focus
+
+
+             focus_page-faults(no of frames)-->  20    30       50      (no Of Frames)
+rand                                            462    420      357
+fifo                                            456    421      389
+custom                                          435    410      353
+
+
+Hence, it is concluded that:
+Custom is best than FIFO and Random
+and FIFO is better than Random.
+while Random is worst in this case.

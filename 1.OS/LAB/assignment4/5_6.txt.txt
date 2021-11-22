@@ -1,0 +1,12 @@
+// this contains d and e part
+
+
+d) If we remove usleep calls in the program  then the  writer will writes all from 2 to 4 and will initialize the data =0 and will finish.
+     Now the data is 0, so all readers will also finish themselves.
+     So  reading and writing will not be able to be done properly by the writer threads and the reader threads.
+  
+
+
+e) Due to usleep(apt delay time), no reader will suffer starvation in this
+ implementation because each reader will get a chance to  read and will 
+  get its operations done corresponding to the write.

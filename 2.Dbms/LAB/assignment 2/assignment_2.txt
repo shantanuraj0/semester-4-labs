@@ -1,0 +1,252 @@
+
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| demo1              |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| test               |
++--------------------+
+
+
+mysql> create database assignment1;
+
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| assignment1        |
+| demo1              |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| test               |
++--------------------+
+
+
+mysql> use assignment1;
+Database changed
+
+
+1)
+
+
+mysql> create table Student(snum integer, sname varchar(30), major varchar(20), level varchar(15), age integer);
+
+
+
+mysql> alter table Student change major major varchar(40);
+
+
+
+mysql> show tables;
++-----------------------+
+| Tables_in_assignment1 |
++-----------------------+
+| student               |
++-----------------------+
+
+
+mysql> desc Student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| snum  | int         | YES  |     | NULL    |       |
+| sname | varchar(30) | YES  |     | NULL    |       |
+| major | varchar(40) | YES  |     | NULL    |       |
+| level | varchar(15) | YES  |     | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+
+
+
+mysql> create table Faculty (fid integer, fname varchar(30), deptid integer);
+
+
+mysql> show tables;
++-----------------------+
+| Tables_in_assignment1 |
++-----------------------+
+| faculty               |
+| student               |
++-----------------------+
+
+
+
+mysql> desc Faculty;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| fid    | int         | YES  |     | NULL    |       |
+| fname  | varchar(30) | YES  |     | NULL    |       |
+| deptid | int         | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+
+
+
+
+2)
+
+
+
+mysql> insert into Student(snum , sname, major , level , age) values
+    -> (051135593,'Maria White','English','SR',21),
+    -> (060839453,'Charles Harris','Architecture','SR',22),
+    -> (099354543,'Susan Martin','Law','JR',20),
+    -> (112348546,'Joseph Thompson','Computer Science','SO',19),
+    -> (115987938,'Christopher Garcia','Computer Science','JR',20),
+    -> (132977562,'Angela Martinez','History','SR',20),
+    -> (269734834,'Thomas Robinson','Psychology','SO',18),
+    -> (280158572,'Margaret Clark','Animal Science','FR',18),
+    -> (301221823,'Juan Rodriguez','Psychology','JR',20),
+    -> (318548912,'Dorthy Lewis','Finance','FR',18),
+    -> (320874981,'Daniel Lee','Electrical Engineering','FR',17),
+    -> (322654189,'Lisa Walker','Computer Science','SO',17),
+    -> (348121549,'Paul Hall','Computer Science','JR',18),
+    -> (351565322,'Nancy Allen','Accounting','JR',19),
+    -> (451519864,'Mark Young','Finance','FR',18),
+    -> (455798411,'Luis Hernandez','Electrical Engineering','FR',17),
+    -> (462156489,'Donald King','Mechanical Engineering','SO',19),
+    -> (550156548,'George Wright','Education','SR',21),
+    -> (552455318,'Ana Lopez','Computer Engineering','SR',19),
+    -> (556784565,'Kenneth Hill','Civil Engineering','SR',21),
+    -> (567354612,'Karen Scott','Computer Engineering','FR',18),
+    -> (573284895,'Steven Green','Kinesiology','SO',19),
+    -> (574489456,'Betty Adams','Economics','JR',20),
+    -> (578875478,'Edward Baker','Veterinary Medicine','SR',21);
+
+
+
+
+
+mysql> insert into Faculty(fid , fname , deptid) values
+    -> (142519864,'Ivana Teach',20),
+    -> (242518965,'James Smith',68),
+    -> (141582651,'Mary Johnson',20),
+    -> (011564812,'John Williams',68),
+    -> (254099823,'Patricia Jones',68),
+    -> (356187925,'Robert Brown',12),
+    -> (489456522,'Linda Davis',20),
+    -> (287321212,'Michael Miller',12),
+    -> (248965255,'Barbara Wilson',12),
+    -> (159542516,'William Moore',33),
+    -> (090873519,'Elizabeth Taylor',11),
+    -> (486512566,'David Anderson',20),
+    -> (619023588,'Jennifer Thomas',11),
+    -> (489221823,'Richard Jackson',33),
+    -> (548977562,'Ulysses Teach',20);
+
+
+
+
+3)
+
+
+
+mysql> select snum,sname,level from student;
++-----------+--------------------+-------+
+| snum      | sname              | level |
++-----------+--------------------+-------+
+|  51135593 | Maria White        | SR    |
+|  60839453 | Charles Harris     | SR    |
+|  99354543 | Susan Martin       | JR    |
+| 112348546 | Joseph Thompson    | SO    |
+| 115987938 | Christopher Garcia | JR    |
+| 132977562 | Angela Martinez    | SR    |
+| 269734834 | Thomas Robinson    | SO    |
+| 280158572 | Margaret Clark     | FR    |
+| 301221823 | Juan Rodriguez     | JR    |
+| 318548912 | Dorthy Lewis       | FR    |
+| 320874981 | Daniel Lee         | FR    |
+| 322654189 | Lisa Walker        | SO    |
+| 348121549 | Paul Hall          | JR    |
+| 351565322 | Nancy Allen        | JR    |
+| 451519864 | Mark Young         | FR    |
+| 455798411 | Luis Hernandez     | FR    |
+| 462156489 | Donald King        | SO    |
+| 550156548 | George Wright      | SR    |
+| 552455318 | Ana Lopez          | SR    |
+| 556784565 | Kenneth Hill       | SR    |
+| 567354612 | Karen Scott        | FR    |
+| 573284895 | Steven Green       | SO    |
+| 574489456 | Betty Adams        | JR    |
+| 578875478 | Edward Baker       | SR    |
++-----------+--------------------+-------+
+
+
+
+4)
+
+
+mysql> select snum,sname,age from Student where major='computer engineering';
++-----------+-------------+------+
+| snum      | sname       | age  |
++-----------+-------------+------+
+| 552455318 | Ana Lopez   |   19 |
+| 567354612 | Karen Scott |   18 |
++-----------+-------------+------+
+
+
+
+5)
+
+
+mysql> select snum from student where age<=20 ;
++-----------+
+| snum      |
++-----------+
+|  99354543 |
+| 112348546 |
+| 115987938 |
+| 132977562 |
+| 269734834 |
+| 280158572 |
+| 301221823 |
+| 318548912 |
+| 320874981 |
+| 322654189 |
+| 348121549 |
+| 351565322 |
+| 451519864 |
+| 455798411 |
+| 462156489 |
+| 552455318 |
+| 567354612 |
+| 573284895 |
+| 574489456 |
++-----------+
+
+
+
+6)
+
+mysql> select sname,level from Student where (major = 'Computer Science' or major='Psychology') and age=18 ;
++-----------------+-------+
+| sname           | level |
++-----------------+-------+
+| Thomas Robinson | SO    |
+| Paul Hall       | JR    |
++-----------------+-------+
+
+
+
+7)
+
+
+mysql> select fname from Faculty where (deptid = 68 or deptid=12);
++----------------+
+| fname          |
++----------------+
+| James Smith    |
+| John Williams  |
+| Patricia Jones |
+| Robert Brown   |
+| Michael Miller |
+| Barbara Wilson |
++----------------+

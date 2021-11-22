@@ -1,0 +1,117 @@
+
+
+
+ (1) 
+
+
+SELECT *
+FROM
+    Faculty NATURAL
+    JOIN Class
+GROUP BY fid
+HAVING
+    count(room) = (
+        SELECT count(DISTINCT room)
+        FROM Class
+    );
+
+
+
+
+
+
+ (2) 
+
+
+SELECT fname
+FROM
+    Faculty NATURAL
+    JOIN Class
+GROUP BY fid
+HAVING count(name) = (
+        -- minimum number of classes taught by a faculty member
+        SELECT min(c)
+        FROM ( -- number of classes taught by each faculty member
+                SELECT count(name) AS c
+                FROM
+                    Faculty NATURAL
+                    JOIN Class
+                GROUP BY fid
+            ) AS classes_count
+    );
+
+
+
+
+
+
+ (3)
+
+
+SELECT sname
+FROM Student
+WHERE snum NOT IN (
+        SELECT DISTINCT snum
+        FROM Enrolled
+    );
+
+
+
+
+
+
+ (4) 
+
+
+SELECT name
+FROM Class
+WHERE room IN (
+        -- room and no of courses
+        SELECT room
+        FROM Class
+        GROUP BY room
+        HAVING count(name) >= 5
+    );
+
+
+
+
+
+
+ 5)
+
+
+SELECT *
+FROM
+    Class
+    JOIN Enrolled ON Class.name = Enrolled.cname
+WHERE name LIKE "D%"
+GROUP BY Class.name
+HAVING count(snum) >= 2;
+
+
+
+
+
+ (6)
+
+
+SELECT *
+FROM Student
+WHERE
+    age > 20
+    AND major LIKE "%Engineering%"
+    AND (
+        level = "FR"
+        OR level = "SR"
+    );
+
+
+
+
+
+
+ (7) 
+
+
+select distinct  sname from student natural join enrolled join class on cname = name where fid in( select fid from enrolled,class where cname = name group by fid having count( distinct cname) <=2);

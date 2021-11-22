@@ -1,0 +1,2 @@
+wget -P test1 -nd -p localhost:7183/index.html
+wget -P test2 -nd -p localhost:7183/index.html

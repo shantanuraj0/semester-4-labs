@@ -1,0 +1,72 @@
+cd /home/temp
+cp lab7.zip /home/name/lab7
+
+go to lab7
+unzip lab7.zip
+
+
+cd lab7
+ls
+cd /src/library
+
+
+cd src/library
+vi fs.cpp
+(purana code hatado) (neeche command haii)
+:%d
+
+
+
+https://pastebin.com/rLDJEbpD
+:wq
+
+(include wale me aaja) ie :
+(cd .. 2 baar karke pehle aaja)
+
+cd include
+cd sfs
+ls
+vi fs.h
+(code delete
+:%d)
+https://github.com/jcbbeiter/simple-file-system/blob/master/include/sfs/fs.h
+
+
+code paste right click
+:wq
+cd ..
+cd ..
+(/lab7 me rehna)
+make
+
+make test
+ls
+cd tests
+
+
+chmod +x *
+cd ..
+ls
+make test
+success
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,320 @@
+
+
+mysql> SHOW databases;
++--------------------+
+| Database           |
++--------------------+
+| assignment1        |
+| demo1              |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| test               |
++--------------------+
+
+
+mysql> use assignment1;
+Database changed
+mysql> show tables;
++-----------------------+
+| Tables_in_assignment1 |
++-----------------------+
+| faculty               |
+| student               |
++-----------------------+
+
+
+mysql> desc faculty;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| fid    | int         | YES  |     | NULL    |       |
+| fname  | varchar(30) | YES  |     | NULL    |       |
+| deptid | int         | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+
+
+
+
+
+
+1)
+
+
+mysql> alter table faculty
+    -> add primary key(fid);
+
+
+mysql> desc faculty;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| fid    | int         | NO   | PRI | NULL    |       |
+| fname  | varchar(30) | YES  |     | NULL    |       |
+| deptid | int         | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+
+
+mysql> alter table student
+    -> add primary key(snum);
+
+
+mysql> desc faculty;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| fid    | int         | NO   | PRI | NULL    |       |
+| fname  | varchar(30) | YES  |     | NULL    |       |
+| deptid | int         | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+
+
+mysql> desc student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| snum  | int         | NO   | PRI | NULL    |       |
+| sname | varchar(30) | YES  |     | NULL    |       |
+| major | varchar(40) | YES  |     | NULL    |       |
+| level | varchar(15) | YES  |     | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+
+
+
+mysql> alter table student
+    -> modify sname varchar(40);
+
+
+mysql> alter table student
+    -> modify level varchar(40);
+
+
+mysql> alter table student
+    -> modify major varchar(40);
+
+
+mysql> desc student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| snum  | int         | NO   | PRI | NULL    |       |
+| sname | varchar(40) | YES  |     | NULL    |       |
+| major | varchar(40) | YES  |     | NULL    |       |
+| level | varchar(40) | YES  |     | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+
+
+mysql> alter table faculty
+    -> modify fname varchar(40);
+
+
+
+
+
+mysql> create table class(
+    -> fid integer,
+    -> meets_at varchar(40),
+    -> room varchar(40),
+    -> name varchar(40),
+    -> PRIMARY KEY(name),
+    -> foreign key(fid) references faculty(fid));
+
+
+
+mysql> desc class;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| fid      | int         | YES  | MUL | NULL    |       |
+| meets_at | varchar(40) | YES  |     | NULL    |       |
+| room     | varchar(40) | YES  |     | NULL    |       |
+| name     | varchar(40) | NO   | PRI | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+
+
+
+mysql> create table Enrolled(
+    -> snum integer,
+    -> cname varchar(40),
+    -> foreign key(snum) references student(snum),
+    -> foreign key(cname) references class(name));
+
+
+
+mysql> desc Enrolled;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| snum  | int         | YES  | MUL | NULL    |       |
+| cname | varchar(40) | YES  | MUL | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+
+
+
+
+2)
+
+
+
+mysql> insert into class (name , meets_at , room , fid ) values
+    -> ('Data Structures','MWF 10','R128',489456522),
+    -> ('Database Systems','MWF 12:30-1:45','1320 DCL',142519864),
+    ->  ('Operating System Design','TuTh 12-1:20','20 AVW',489456522) ,
+    -> ('Archaeology of the Incas','MWF 3-4:15','R128',248965255),
+    -> ('Aviation Accident Investigation','TuTh 1-2:50','Q3',011564812),
+    -> ('Air Quality Engineering','TuTh 10:30-11:45','R15',011564812),
+    -> ('Introductory Latin','MWF 3-4:15','R12',248965255),
+    -> ('American Political Parties','TuTh 2-3:15','20 AVW',619023588),
+    -> ('Social Cognition','Tu 6:30-8:40','R15',159542516),
+    -> ('Perception','MTuWTh 3','Q3',489221823),
+    -> ('Multivariate Analysis','TuTh 2-3:15','R15',090873519),
+    -> ('Patent Law','F 1-2:50','R128',090873519),
+    -> ('Urban Economics','MWF 11','20 AVW',489221823),
+    -> ('Organic Chemistry','TuTh 12:30-1:45','R12',489221823),
+    ->  ('Marketing Research','MW 10-11:15','1320 DCL',489221823),
+    -> ('Seminar in American Art','M 4','R15',489221823),
+    -> ('Orbital Mechanics','MWF 8','1320 DCL',011564812),
+    -> ('Dairy Herd Management','TuTh 12:30-1:45','R128',356187925),
+    ->  ('Communication Networks','MW 9:30-10:45','20 AVW',141582651),
+    -> ('Optical Electronics','TuTh 12:30-1:45','R15',254099823),
+    -> ('Introduction to Math','TuTh 8-9:30','R128',489221823);
+
+
+mysql> insert into Enrolled (snum , cname) values
+    -> (112348546,'Database Systems'),
+    -> (115987938,'Database Systems'),
+    -> (348121549,'Database Systems'),
+    -> (322654189,'Database Systems'),
+    -> (552455318,'Database Systems'),
+    -> (455798411,'Operating System Design'),
+    -> (552455318,'Operating System Design'),
+    -> (567354612,'Operating System Design'),
+    -> (112348546,'Operating System Design'),
+    -> (115987938,'Operating System Design'),
+    -> (322654189,'Operating System Design'),
+    -> (567354612,'Data Structures'),
+    -> (552455318,'Communication Networks'),
+    -> (455798411,'Optical Electronics'),
+    -> (301221823,'Perception'),
+    -> (301221823,'Social Cognition'),
+    -> (301221823,'American Political Parties'),
+    -> (556784565,'Air Quality Engineering'),
+    -> (099354543,'Patent Law'),
+    -> (574489456,'Urban Economics');
+
+
+
+mysql> show tables;
++-----------------------+
+| Tables_in_assignment1 |
++-----------------------+
+| class                 |
+| enrolled              |
+| faculty               |
+| student               |
++-----------------------+
+
+
+3)
+
+
+
+mysql> select name from class where room='R128';
++--------------------------+
+| name                     |
++--------------------------+
+| Archaeology of the Incas |
+| Dairy Herd Management    |
+| Data Structures          |
+| Introduction to Math     |
+| Patent Law               |
++--------------------------+
+
+
+4)
+
+
+mysql> select faculty.fid,fname,deptid from faculty,class where faculty.fid = class.fid and class.room ='R15';
++-----------+------------------+--------+
+| fid       | fname            | deptid |
++-----------+------------------+--------+
+|  11564812 | John Williams    |     68 |
+|  90873519 | Elizabeth Taylor |     11 |
+| 254099823 | Patricia Jones   |     68 |
+| 489221823 | Richard Jackson  |     33 |
+| 159542516 | William Moore    |     33 |
++-----------+------------------+--------+
+
+
+5)
+
+
+mysql> select fname from faculty,class where faculty.fid = class.fid and class.name='Orbital Mechanics';
++---------------+
+| fname         |
++---------------+
+| John Williams |
++---------------+
+
+
+6)
+
+
+mysql> select sname from student,enrolled,class,faculty where student.snum = enrolled.snum and enrolled.cname = class.name and class.fid = faculty.fid and faculty.fname='John Williams';
++--------------+
+| sname        |
++--------------+
+| Kenneth Hill |
++--------------+
+
+
+
+7)
+
+
+mysql> select sname from student,faculty,class,enrolled where student.snum= enrolled.snum and enrolled.cname = class.name and class.fid = faculty.fid and faculty.fname = 'Ivana Teach' and student.level='SR' ;
++-----------+
+| sname     |
++-----------+
+| Ana Lopez |
++-----------+
+
+
+8)
+
+
+mysql> select cname from enrolled , student where student.sname = 'Lisa Walker' and student.snum = enrolled.snum;
++-------------------------+
+| cname                   |
++-------------------------+
+| Database Systems        |
+| Operating System Design |
++-------------------------+
+
+
+
+
+
+9)
+
+
+
+mysql> select distinct sname from student , enrolled where student.snum = enrolled.snum;
++--------------------+
+| sname              |
++--------------------+
+| Susan Martin       |
+| Joseph Thompson    |
+| Christopher Garcia |
+| Juan Rodriguez     |
+| Lisa Walker        |
+| Paul Hall          |
+| Luis Hernandez     |
+| Ana Lopez          |
+| Kenneth Hill       |
+| Karen Scott        |
+| Betty Adams        |
++--------------------+

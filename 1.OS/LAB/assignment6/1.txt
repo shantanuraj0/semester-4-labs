@@ -1,0 +1,372 @@
+login as: shantanu_raj
+Authenticating with public key "imported-openssh-key"
+Welcome to Ubuntu 18.04.1 LTS (GNU/Linux 5.4.0-1035-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+ System information disabled due to load higher than 4.0
+
+ * Introducing self-healing high availability clusters in MicroK8s.
+   Simple, hardened, Kubernetes for production, from RaspberryPi to DC.
+
+     https://microk8s.io/high-availability
+
+  Get cloud support with Ubuntu Advantage Cloud Guest:
+    http://www.ubuntu.com/business/services/cloud
+
+ * Canonical Livepatch is available for installation.
+   - Reduce system reboots and improve kernel security. Activate at:
+     https://ubuntu.com/livepatch
+
+130 packages can be updated.
+3 updates are security updates.
+
+New release '20.04.2 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+*** System restart required ***
+Last login: Thu Mar 18 20:11:44 2021 from 14.139.197.66
+shantanu_raj@ip-172-26-8-158:~$ ls
+lab1  lab2  lab3  lab4  lab5
+shantanu_raj@ip-172-26-8-158:~$ mkdir lab6
+shantanu_raj@ip-172-26-8-158:~$ ls
+lab1  lab2  lab3  lab4  lab5  lab6
+shantanu_raj@ip-172-26-8-158:~$ cd lab6
+shantanu_raj@ip-172-26-8-158:~/lab6$ cp /home/temp/lab6_vm_assignment .
+cp: cannot stat '/home/temp/lab6_vm_assignment': No such file or directory
+shantanu_raj@ip-172-26-8-158:~/lab6$ cd /home/temp
+shantanu_raj@ip-172-26-8-158:/home/temp$ ls
+lab5_web_server.zip  lab5test.sh  lab6_vm_assignment.zip  lab7.zip
+shantanu_raj@ip-172-26-8-158:/home/temp$ cd ..
+shantanu_raj@ip-172-26-8-158:/home$ cd shantanu_raj
+shantanu_raj@ip-172-26-8-158:~$ cd lab6
+shantanu_raj@ip-172-26-8-158:~/lab6$ cp /home/temp/lab6_vm_assignment.zip
+cp: missing destination file operand after '/home/temp/lab6_vm_assignment.zip'
+Try 'cp --help' for more information.
+shantanu_raj@ip-172-26-8-158:~/lab6$ cp /home/temp/lab6_vm_assignment.zip .
+shantanu_raj@ip-172-26-8-158:~/lab6$ ls
+lab6_vm_assignment.zip
+shantanu_raj@ip-172-26-8-158:~/lab6$ unzip lab6_vm_assignment.zip
+Archive:  lab6_vm_assignment.zip
+   creating: vm_assignment/
+  inflating: vm_assignment/disk.c
+  inflating: vm_assignment/disk.h
+  inflating: vm_assignment/main.c
+  inflating: vm_assignment/Makefile
+  inflating: vm_assignment/page_table.c
+  inflating: vm_assignment/page_table.h
+  inflating: vm_assignment/program.c
+  inflating: vm_assignment/program.h
+  inflating: vm_assignment/lab6_assignment.docx
+  inflating: vm_assignment/Lab 6 Virtual Memory.pptx
+shantanu_raj@ip-172-26-8-158:~/lab6$ ls
+lab6_vm_assignment.zip  vm_assignment
+shantanu_raj@ip-172-26-8-158:~/lab6$ cd vm_assignment
+shantanu_raj@ip-172-26-8-158:~/lab6/vm_assignment$ ls
+'Lab 6 Virtual Memory.pptx'   Makefile   disk.c   disk.h   lab6_assignment.docx   main.c   page_table.c   page_table.h   program.c   program.h
+shantanu_raj@ip-172-26-8-158:~/lab6/vm_assignment$ rm main.c
+shantanu_raj@ip-172-26-8-158:~/lab6/vm_assignment$ vi main.c
+shantanu_raj@ip-172-26-8-158:~/lab6/vm_assignment$ make
+gcc -Wall -g -c main.c -o main.o
+main.c: In function ‘fifo_policy’:
+main.c:263:3: error: ‘fIndex’ undeclared (first use in this function); did you mean ‘f_index’?
+   fIndex = frame;
+   ^~~~~~
+   f_index
+main.c:263:3: note: each undeclared identifier is reported only once for each function it appears in
+main.c: In function ‘custom_policy’:
+main.c:313:17: warning: passing argument 1 of ‘remove_page’ makes pointer from integer without a cast [-Wint-conversion]
+     remove_page(p , f_index );
+                 ^
+main.c:34:6: note: expected ‘struct page_table *’ but argument is of type ‘int’
+ void remove_page(struct page_table *p , int fno );
+      ^~~~~~~~~~~
+Makefile:5: recipe for target 'main.o' failed
+make: *** [main.o] Error 1
+shantanu_raj@ip-172-26-8-158:~/lab6/vm_assignment$ vi main.c
+shantanu_raj@ip-172-26-8-158:~/lab6/vm_assignment$ vi main.c
+shantanu_raj@ip-172-26-8-158:~/lab6/vm_assignment$ make
+gcc -Wall -g -c main.c -o main.o
+main.c: In function ‘custom_policy’:
+main.c:313:17: warning: passing argument 1 of ‘remove_page’ makes pointer from integer without a cast [-Wint-conversion]
+     remove_page(p , f_index );
+                 ^
+main.c:34:6: note: expected ‘struct page_table *’ but argument is of type ‘int’
+ void remove_page(struct page_table *p , int fno );
+      ^~~~~~~~~~~
+gcc -Wall -g -c page_table.c -o page_table.o
+page_table.c:33:49: error: unknown type name ‘siginfo_t’; did you mean ‘sigset_t’?
+ static void internal_fault_handler( int signum, siginfo_t *info, void *context )
+                                                 ^~~~~~~~~
+                                                 sigset_t
+page_table.c: In function ‘page_table_create’:
+page_table.c:60:19: error: storage size of ‘sa’ isn’t known
+  struct sigaction sa;
+                   ^~
+page_table.c:91:20: error: ‘internal_fault_handler’ undeclared (first use in this function); did you mean ‘page_fault_handler_t’?
+  sa.sa_sigaction = internal_fault_handler;
+                    ^~~~~~~~~~~~~~~~~~~~~~
+                    page_fault_handler_t
+page_table.c:91:20: note: each undeclared identifier is reported only once for each function it appears in
+page_table.c:92:16: error: ‘SA_SIGINFO’ undeclared (first use in this function); did you mean ‘S_IFIFO’?
+  sa.sa_flags = SA_SIGINFO;
+                ^~~~~~~~~~
+                S_IFIFO
+page_table.c:94:2: warning: implicit declaration of function ‘sigfillset’ [-Wimplicit-function-declaration]
+  sigfillset( &sa.sa_mask );
+  ^~~~~~~~~~
+page_table.c:95:2: warning: implicit declaration of function ‘sigaction’ [-Wimplicit-function-declaration]
+  sigaction( SIGSEGV, &sa, 0 );
+  ^~~~~~~~~
+page_table.c:95:13: error: ‘SIGSEGV’ undeclared (first use in this function)
+  sigaction( SIGSEGV, &sa, 0 );
+             ^~~~~~~
+page_table.c:60:19: warning: unused variable ‘sa’ [-Wunused-variable]
+  struct sigaction sa;
+                   ^~
+Makefile:8: recipe for target 'page_table.o' failed
+make: *** [page_table.o] Error 1
+shantanu_raj@ip-172-26-8-158:~/lab6/vm_assignment$ rm main.c
+shantanu_raj@ip-172-26-8-158:~/lab6/vm_assignment$ vi main.c
+shantanu_raj@ip-172-26-8-158:~/lab6/vm_assignment$ make
+gcc -Wall -g -c main.c -o main.o
+gcc -Wall -g -c page_table.c -o page_table.o
+page_table.c:33:49: error: unknown type name ‘siginfo_t’; did you mean ‘sigset_t’?
+ static void internal_fault_handler( int signum, siginfo_t *info, void *context )
+                                                 ^~~~~~~~~
+                                                 sigset_t
+page_table.c: In function ‘page_table_create’:
+page_table.c:60:19: error: storage size of ‘sa’ isn’t known
+  struct sigaction sa;
+                   ^~
+page_table.c:91:20: error: ‘internal_fault_handler’ undeclared (first use in this function); did you mean ‘page_fault_handler_t’?
+  sa.sa_sigaction = internal_fault_handler;
+                    ^~~~~~~~~~~~~~~~~~~~~~
+                    page_fault_handler_t
+page_table.c:91:20: note: each undeclared identifier is reported only once for each function it appears in
+page_table.c:92:16: error: ‘SA_SIGINFO’ undeclared (first use in this function); did you mean ‘S_IFIFO’?
+  sa.sa_flags = SA_SIGINFO;
+                ^~~~~~~~~~
+                S_IFIFO
+page_table.c:94:2: warning: implicit declaration of function ‘sigfillset’ [-Wimplicit-function-declaration]
+  sigfillset( &sa.sa_mask );
+  ^~~~~~~~~~
+page_table.c:95:2: warning: implicit declaration of function ‘sigaction’ [-Wimplicit-function-declaration]
+  sigaction( SIGSEGV, &sa, 0 );
+  ^~~~~~~~~
+page_table.c:95:13: error: ‘SIGSEGV’ undeclared (first use in this function)
+  sigaction( SIGSEGV, &sa, 0 );
+             ^~~~~~~
+page_table.c:60:19: warning: unused variable ‘sa’ [-Wunused-variable]
+  struct sigaction sa;
+                   ^~
+Makefile:8: recipe for target 'page_table.o' failed
+make: *** [page_table.o] Error 1
+shantanu_raj@ip-172-26-8-158:~/lab6/vm_assignment$ ./virtmem 21 20 rand sort
+-bash: ./virtmem: No such file or directory
+shantanu_raj@ip-172-26-8-158:~/lab6/vm_assignment$ rm main.c
+shantanu_raj@ip-172-26-8-158:~/lab6/vm_assignment$ vi main.
+shantanu_raj@ip-172-26-8-158:~/lab6/vm_assignment$ make
+make: *** No rule to make target 'main.c', needed by 'main.o'.  Stop.
+shantanu_raj@ip-172-26-8-158:~/lab6/vm_assignment$ rm main.
+shantanu_raj@ip-172-26-8-158:~/lab6/vm_assignment$ vi main.c
+shantanu_raj@ip-172-26-8-158:~/lab6/vm_assignment$ make
+gcc -Wall -g -c main.c -o main.o
+main.c: In function ‘page_fault_handler’:
+main.c:195:18: warning: unused variable ‘i’ [-Wunused-variable]
+   int rw, frame, i=0,evictPage=0; //rw tells us if the page fault is due to a read or a write
+                  ^
+main.c:195:11: warning: unused variable ‘frame’ [-Wunused-variable]
+   int rw, frame, i=0,evictPage=0; //rw tells us if the page fault is due to a read or a write
+           ^~~~~
+gcc -Wall -g -c page_table.c -o page_table.o
+page_table.c:33:49: error: unknown type name ‘siginfo_t’; did you mean ‘sigset_t’?
+ static void internal_fault_handler( int signum, siginfo_t *info, void *context )
+                                                 ^~~~~~~~~
+                                                 sigset_t
+page_table.c: In function ‘page_table_create’:
+page_table.c:60:19: error: storage size of ‘sa’ isn’t known
+  struct sigaction sa;
+                   ^~
+page_table.c:91:20: error: ‘internal_fault_handler’ undeclared (first use in this function); did you mean ‘page_fault_handler_t’?
+  sa.sa_sigaction = internal_fault_handler;
+                    ^~~~~~~~~~~~~~~~~~~~~~
+                    page_fault_handler_t
+page_table.c:91:20: note: each undeclared identifier is reported only once for each function it appears in
+page_table.c:92:16: error: ‘SA_SIGINFO’ undeclared (first use in this function); did you mean ‘S_IFIFO’?
+  sa.sa_flags = SA_SIGINFO;
+                ^~~~~~~~~~
+                S_IFIFO
+page_table.c:94:2: warning: implicit declaration of function ‘sigfillset’ [-Wimplicit-function-declaration]
+  sigfillset( &sa.sa_mask );
+  ^~~~~~~~~~
+page_table.c:95:2: warning: implicit declaration of function ‘sigaction’ [-Wimplicit-function-declaration]
+  sigaction( SIGSEGV, &sa, 0 );
+  ^~~~~~~~~
+page_table.c:95:13: error: ‘SIGSEGV’ undeclared (first use in this function)
+  sigaction( SIGSEGV, &sa, 0 );
+             ^~~~~~~
+page_table.c:60:19: warning: unused variable ‘sa’ [-Wunused-variable]
+  struct sigaction sa;
+                   ^~
+Makefile:8: recipe for target 'page_table.o' failed
+make: *** [page_table.o] Error 1
+shantanu_raj@ip-172-26-8-158:~/lab6/vm_assignment$ ./virtmem 21 20 rand sort
+-bash: ./virtmem: No such file or directory
+shantanu_raj@ip-172-26-8-158:~/lab6/vm_assignment$ cd ..
+shantanu_raj@ip-172-26-8-158:~/lab6$ ls
+lab6_vm_assignment.zip  vm_assignment
+shantanu_raj@ip-172-26-8-158:~/lab6$ cd vm_assignment
+shantanu_raj@ip-172-26-8-158:~/lab6/vm_assignment$ ls
+'Lab 6 Virtual Memory.pptx'   Makefile   disk.c   disk.h   lab6_assignment.docx   main.c   main.o   page_table.c   page_table.h   program.c   program.h
+shantanu_raj@ip-172-26-8-158:~/lab6/vm_assignment$ vi main.c
+shantanu_raj@ip-172-26-8-158:~/lab6/vm_assignment$ vi page_table.c
+shantanu_raj@ip-172-26-8-158:~/lab6/vm_assignment$ make
+gcc -Wall -g -c main.c -o main.o
+main.c: In function ‘page_fault_handler’:
+main.c:195:18: warning: unused variable ‘i’ [-Wunused-variable]
+   int rw, frame, i=0,evictPage=0; //rw tells us if the page fault is due to a read or a write
+                  ^
+main.c:195:11: warning: unused variable ‘frame’ [-Wunused-variable]
+   int rw, frame, i=0,evictPage=0; //rw tells us if the page fault is due to a read or a write
+           ^~~~~
+gcc -Wall -g -c page_table.c -o page_table.o
+gcc -Wall -g -c disk.c -o disk.o
+gcc -Wall -g -c program.c -o program.o
+gcc main.o page_table.o disk.o program.o -o virtmem
+shantanu_raj@ip-172-26-8-158:~/lab6/vm_assignment$ ./virtmem 21 20 rand sort
+page fault on page #0
+page fault on page #0
+page fault on page #1
+page fault on page #1
+page fault on page #2
+page fault on page #2
+page fault on page #3
+page fault on page #3
+page fault on page #4
+page fault on page #4
+page fault on page #5
+page fault on page #5
+page fault on page #6
+page fault on page #6
+page fault on page #7
+page fault on page #7
+page fault on page #8
+page fault on page #8
+page fault on page #9
+page fault on page #9
+page fault on page #10
+page fault on page #10
+page fault on page #11
+page fault on page #11
+page fault on page #12
+page fault on page #12
+page fault on page #13
+page fault on page #13
+page fault on page #14
+page fault on page #14
+page fault on page #15
+page fault on page #15
+page fault on page #16
+page fault on page #16
+page fault on page #17
+page fault on page #17
+page fault on page #18
+page fault on page #18
+page fault on page #19
+page fault on page #19
+page fault on page #20
+page fault on page #20
+page fault on page #16
+page fault on page #16
+page fault on page #11
+page fault on page #15
+page fault on page #11
+page fault on page #15
+page fault on page #1
+page fault on page #9
+page fault on page #1
+page fault on page #1
+page fault on page #9
+page fault on page #12
+page fault on page #12
+page fault on page #0
+page fault on page #7
+page fault on page #13
+page fault on page #20
+sort result is -94734
+# Page Faults = 59
+# Reads = 12
+ # Writes = 11
+shantanu_raj@ip-172-26-8-158:~/lab6/vm_assignment$ vi main.c
+shantanu_raj@ip-172-26-8-158:~/lab6/vm_assignment$ vi main.c
+shantanu_raj@ip-172-26-8-158:~/lab6/vm_assignment$ make
+gcc -Wall -g -c main.c -o main.o
+gcc main.o page_table.o disk.o program.o -o virtmem
+shantanu_raj@ip-172-26-8-158:~/lab6/vm_assignment$ ./virtmem 21 20 rand sort
+page fault on page #0
+page fault on page #0
+page fault on page #1
+page fault on page #1
+page fault on page #2
+page fault on page #2
+page fault on page #3
+page fault on page #3
+page fault on page #4
+page fault on page #4
+page fault on page #5
+page fault on page #5
+page fault on page #6
+page fault on page #6
+page fault on page #7
+page fault on page #7
+page fault on page #8
+page fault on page #8
+page fault on page #9
+page fault on page #9
+page fault on page #10
+page fault on page #10
+page fault on page #11
+page fault on page #11
+page fault on page #12
+page fault on page #12
+page fault on page #13
+page fault on page #13
+page fault on page #14
+page fault on page #14
+page fault on page #15
+page fault on page #15
+page fault on page #16
+page fault on page #16
+page fault on page #17
+page fault on page #17
+page fault on page #18
+page fault on page #18
+page fault on page #19
+page fault on page #19
+page fault on page #20
+page fault on page #20
+page fault on page #16
+page fault on page #16
+page fault on page #11
+page fault on page #15
+page fault on page #11
+page fault on page #15
+page fault on page #1
+page fault on page #9
+page fault on page #1
+page fault on page #1
+page fault on page #9
+page fault on page #12
+page fault on page #12
+page fault on page #0
+page fault on page #7
+page fault on page #13
+page fault on page #20
+sort result is -94734
+# Page Faults = 59
+# Reads = 12
+ # Writes = 11

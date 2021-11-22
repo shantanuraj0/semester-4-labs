@@ -1,0 +1,98 @@
+create table login (
+  username varchar(20),
+  pass_word varchar(20),
+  a_id integer,
+  primary key (username),
+  foreign key(a_id) references agent(a_id)
+ ); 
+
+
+
+
+ALTER TABLE login
+     ADD is_admin int
+     DEFAULT 0;
+
+
+update login set is_admin=1 where a_id=5;
+
+--------------------------------------------------------------------------
+
+create  table AGENT (
+     a_id integer,
+     firstname varchar(20),
+     lastname varchar(20) ,
+     is_admin integer ,
+     contact BIGINT ,
+     PRIMARY KEY(a_id) );
+
+
+-----------------------------------------------------------------------------
+create table SELLER (
+     owner_id integer,
+     firstname varchar( 30) ,
+     lastname varchar(30) ,
+     contact BIGINT ,
+     PRIMARY KEY( owner_id) );
+
+
+
+-------------------------------------------------------------------------------
+create table BUYER (
+     buyer_id integer ,
+     firstname varchar(30) ,
+     lastname varchar(30) ,
+     contact BIGINT ,
+     primary key( buyer_id) );
+
+
+
+
+--------------------------------------------------------------------------------------
+CREATE TABLE Property(
+       p_id INT,
+       area BIGINT,
+       bhk INT,
+       asked_price BIGINT,
+       locality varchar(20),
+       city varchar(20),
+       rent_sell varchar(20),
+       current_status varchar(40),
+       owner_id INT,
+       a_id INT,
+       price INT ,	
+       PRIMARY KEY(p_id),
+       foreign key (owner_id)  references Seller(owner_id),
+       foreign key(a_id) references Agent(a_id));
+
+
+
+
+---------------------------------------------------------------------------------------------
+ create table RENTERS_HISTORY (
+     trans_id integer ,
+     rent_price integer ,
+     rent_date date ,
+     a_id integer ,
+     p_id integer ,
+     buyer_id integer,
+     primary key ( trans_id) ,
+     foreign key(a_id ) references agent (a_id),
+     foreign key(p_id ) references property (p_id),
+     foreign key(buyer_id ) references buyer (buyer_id) );
+
+
+
+
+-----------------------------------------------------------------------------------------------
+ create table BUYERS_HISTORY (
+     trans_id integer ,
+     sell_price integer ,
+     sell_date date ,
+     a_id integer ,
+     p_id integer ,
+     buyer_id integer,
+     primary key ( trans_id) ,
+     foreign key(a_id ) references agent (a_id),
+     foreign key(p_id ) references property (p_id),
+     foreign key(buyer_id ) references buyer (buyer_id) );

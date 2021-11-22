@@ -1,0 +1,6 @@
+E001 Ram Kolkata D001
+E002 Shyam Delhi D002
+E003 Bruce Guwahati D003
+E004 Peter Chennai D001
+E005 Clark Hyderabad D002
+E006 Bruce Kolkata D001

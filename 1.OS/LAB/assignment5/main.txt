@@ -1,0 +1,242 @@
+login as: shantanu_raj
+Authenticating with public key "imported-openssh-key"
+Welcome to Ubuntu 18.04.1 LTS (GNU/Linux 5.4.0-1035-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Thu Mar 11 17:01:46 IST 2021
+
+  System load:  0.0                Processes:           169
+  Usage of /:   6.9% of 310.15GB   Users logged in:     6
+  Memory usage: 7%                 IP address for eth0: 172.26.8.158
+  Swap usage:   0%
+
+ * Introducing self-healing high availability clusters in MicroK8s.
+   Simple, hardened, Kubernetes for production, from RaspberryPi to DC.
+
+     https://microk8s.io/high-availability
+
+  Get cloud support with Ubuntu Advantage Cloud Guest:
+    http://www.ubuntu.com/business/services/cloud
+
+ * Canonical Livepatch is available for installation.
+   - Reduce system reboots and improve kernel security. Activate at:
+     https://ubuntu.com/livepatch
+
+126 packages can be updated.
+0 updates are security updates.
+
+
+*** System restart required ***
+Last login: Thu Feb 25 14:53:12 2021 from 14.139.197.66
+shantanu_raj@ip-172-26-8-158:~$ ls
+lab1  lab2  lab3  lab4
+shantanu_raj@ip-172-26-8-158:~$ mkdir lab5
+shantanu_raj@ip-172-26-8-158:~$ ls
+lab1  lab2  lab3  lab4  lab5
+shantanu_raj@ip-172-26-8-158:~$ cd ..
+shantanu_raj@ip-172-26-8-158:/home$ cd temp
+shantanu_raj@ip-172-26-8-158:/home/temp$ ls
+lab5_web_server.zip
+shantanu_raj@ip-172-26-8-158:/home/temp$ cp lab5_web_server.zip
+cp: missing destination file operand after 'lab5_web_server.zip'
+Try 'cp --help' for more information.
+shantanu_raj@ip-172-26-8-158:/home/temp$ cp lab5_web_server.zip ../shantanu_raj/lab5
+shantanu_raj@ip-172-26-8-158:/home/temp$ cd ..
+shantanu_raj@ip-172-26-8-158:/home$ cd shantanu_raj
+shantanu_raj@ip-172-26-8-158:~$ ls
+lab1  lab2  lab3  lab4  lab5
+shantanu_raj@ip-172-26-8-158:~$ cd lab5
+shantanu_raj@ip-172-26-8-158:~/lab5$ ls
+lab5_web_server.zip
+shantanu_raj@ip-172-26-8-158:~/lab5$ unzip lab5_web_server.zip
+Archive:  lab5_web_server.zip
+  inflating: web_server/ass3_fig1.gif
+  inflating: web_server/ass3_fig3.gif
+  inflating: web_server/ass3_fiq2.gif
+  inflating: web_server/assignment3_web_server.pdf
+  inflating: web_server/Makefile
+  inflating: web_server/request.c
+  inflating: web_server/request.h
+  inflating: web_server/tcp.c
+  inflating: web_server/tcp.h
+  inflating: web_server/web_server.htm
+   creating: web_server/web_server_files/
+  inflating: web_server/web_server_files/multi.gif
+  inflating: web_server/web_server_files/pool.gif
+  inflating: web_server/web_server_files/single.gif
+  inflating: web_server/web_server_files/style.css
+  inflating: web_server/webdocs.tar.gz
+  inflating: web_server/webserver.c
+shantanu_raj@ip-172-26-8-158:~/lab5$ ls
+lab5_web_server.zip  web_server
+shantanu_raj@ip-172-26-8-158:~/lab5$ cd web_server
+shantanu_raj@ip-172-26-8-158:~/lab5/web_server$ ls
+Makefile  ass3_fig1.gif  ass3_fig3.gif  ass3_fiq2.gif  assignment3_web_server.pdf  request.c  request.h  tcp.c  tcp.h  web_server.htm  web_server_files  webdocs.tar.gz  webserver.c
+shantanu_raj@ip-172-26-8-158:~/lab5/web_server$ 
+shantanu_raj@ip-172-26-8-158:~/lab5/web_server$ ls
+cd Makefile       ass3_fig3.gif  assignment3_web_server.pdf  request.h  tcp.h           web_server_files  webdocs.tar.gz
+ass3_fig1.gif  ass3_fiq2.gif  request.c                   tcp.c      web_server.htm  webdocs           webserver.c
+shantanu_raj@ip-172-26-8-158:~/lab5/web_server$ vi webserver_dynamic.c
+shantanu_raj@ip-172-26-8-158:~/lab5/web_server$ rm Makefile
+shantanu_raj@ip-172-26-8-158:~/lab5/web_server$ ls
+ass3_fig1.gif  ass3_fiq2.gif               request.c  tcp.c  web_server.htm    webdocs         webserver.c
+ass3_fig3.gif  assignment3_web_server.pdf  request.h  tcp.h  web_server_files  webdocs.tar.gz  webserver_dynamic.c
+shantanu_raj@ip-172-26-8-158:~/lab5/web_server$ vi Makefile
+shantanu_raj@ip-172-26-8-158:~/lab5/web_server$ make
+gcc -Wall -g -c webserver.c -o webserver.ocd 
+gcc -Wall -g -c tcp.c -o tcp.o
+tcp.c: In function ‘tcp_write’:
+tcp.c:516:4: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+    if (tcp)
+    ^~
+tcp.c:518:3: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   if(chunk<0) {
+   ^~
+gcc -Wall -g -c request.c -o request.o
+gcc webserver.o tcp.o request.o -o webserver -g -lpthread
+gcc -Wall -g -c webserver_dynamic.c -o webserver_dynamic.o
+gcc webserver_dynamic.o tcp.o request.o -o webserver_dynamic -g -lpthread
+shantanu_raj@ip-172-26-8-158:~/lab5/web_server$ ./webserver_dynamic 7183
+use: ./webserver_dynamic <port> <nthread>
+shantanu_raj@ip-172-26-8-158:~/lab5/web_server$ ./webserver_dynamic 7183 2
+webserver: waiting for requests..
+webserver: shutting down because idle too long
+shantanu_raj@ip-172-26-8-158:~/lab5/web_server$ ./webserver_dynamic 7183 2
+webserver: waiting for requests..
+webserver: got new connection.
+webserver: got request for index.html
+webserver: done sending index.html
+webserver: got new connection.
+webserver: got request for robots.txt
+webserver: done sending robots.txt
+webserver: got new connection.
+webserver: got request for clarke-memorial-fountain-thumb.jpg
+webserver: done sending clarke-memorial-fountain-thumb.jpg
+webserver: got new connection.
+webserver: got request for clarke-memorial-fountain-1024x768.jpg
+webserver: got new connection.
+webserver: got request for index.html
+webserver: done sending index.html
+webserver: got new connection.
+webserver: got request for robots.txt
+webserver: done sending robots.txt
+webserver: got new connection.
+webserver: got request for clarke-memorial-fountain-thumb.jpg
+webserver: done sending clarke-memorial-fountain-thumb.jpg
+webserver: got new connection.
+webserver: got request for clarke-memorial-fountain-1024x768.jpg
+webserver: done sending clarke-memorial-fountain-1024x768.jpg
+webserver: got new connection.
+webserver: got request for grotto-christmas-thumb.jpg
+webserver: done sending grotto-christmas-thumb.jpg
+webserver: got new connection.
+webserver: got request for grotto-christmas-1024x768.jpg
+webserver: done sending clarke-memorial-fountain-1024x768.jpg
+webserver: got new connection.
+webserver: got request for grotto-christmas-thumb.jpg
+webserver: done sending grotto-christmas-1024x768.jpg
+webserver: got new connection.
+webserver: got request for dome-aerial-thumb.jpg
+webserver: done sending dome-aerial-thumb.jpg
+webserver: got new connection.
+webserver: got request for dome-aerial-1024x768.jpg
+webserver: done sending dome-aerial-1024x768.jpg
+webserver: got new connection.
+webserver: got request for helmet-thumb.jpg
+webserver: done sending helmet-thumb.jpg
+webserver: got new connection.
+webserver: got request for helmet-1024x768.jpg
+webserver: done sending helmet-1024x768.jpg
+webserver: got new connection.
+webserver: got request for dome-basilica-thumb.jpg
+webserver: done sending dome-basilica-thumb.jpg
+webserver: got new connection.
+webserver: got request for dome-basilica-1024x768.jpg
+webserver: done sending dome-basilica-1024x768.jpg
+webserver: got new connection.
+webserver: got request for jesus-statue-thumb.jpg
+webserver: done sending jesus-statue-thumb.jpg
+webserver: got new connection.
+webserver: got request for jesus-statue-1024x768.jpg
+webserver: done sending grotto-christmas-thumb.jpg
+webserver: got new connection.
+webserver: got request for grotto-christmas-1024x768.jpg
+webserver: done sending jesus-statue-1024x768.jpg
+webserver: got new connection.
+webserver: got request for mary-spring-thumb.jpg
+webserver: done sending mary-spring-thumb.jpg
+webserver: got new connection.
+webserver: got request for mary-spring-1024x768.jpg
+webserver: done sending mary-spring-1024x768.jpg
+webserver: got new connection.
+webserver: got request for sorin-cashore-experimental-thumb.jpg
+webserver: done sending sorin-cashore-experimental-thumb.jpg
+webserver: got new connection.
+webserver: got request for sorin-cashore-experimental-1024x768.jpg
+webserver: done sending sorin-cashore-experimental-1024x768.jpg
+webserver: got new connection.
+webserver: got request for stadium-aerial-thumb.jpg
+webserver: done sending grotto-christmas-1024x768.jpg
+webserver: got new connection.
+webserver: got request for dome-aerial-thumb.jpg
+webserver: done sending stadium-aerial-thumb.jpg
+webserver: got new connection.
+webserver: got request for stadium-aerial-1024x768.jpg
+webserver: done sending stadium-aerial-1024x768.jpg
+webserver: got new connection.
+webserver: got request for stadium-full-thumb.jpg
+webserver: done sending stadium-full-thumb.jpg
+webserver: got new connection.
+webserver: got request for stadium-full-1024x768.jpg
+webserver: done sending stadium-full-1024x768.jpg
+webserver: done sending dome-aerial-thumb.jpg
+webserver: got new connection.
+webserver: got request for dome-aerial-1024x768.jpg
+webserver: done sending dome-aerial-1024x768.jpg
+webserver: got new connection.
+webserver: got request for helmet-thumb.jpg
+webserver: done sending helmet-thumb.jpg
+webserver: got new connection.
+webserver: got request for helmet-1024x768.jpg
+webserver: done sending helmet-1024x768.jpg
+webserver: got new connection.
+webserver: got request for dome-basilica-thumb.jpg
+webserver: done sending dome-basilica-thumb.jpg
+webserver: got new connection.
+webserver: got request for dome-basilica-1024x768.jpg
+webserver: done sending dome-basilica-1024x768.jpg
+webserver: got new connection.
+webserver: got request for jesus-statue-thumb.jpg
+webserver: done sending jesus-statue-thumb.jpg
+webserver: got new connection.
+webserver: got request for jesus-statue-1024x768.jpg
+webserver: done sending jesus-statue-1024x768.jpg
+webserver: got new connection.
+webserver: got request for mary-spring-thumb.jpg
+webserver: done sending mary-spring-thumb.jpg
+webserver: got new connection.
+webserver: got request for mary-spring-1024x768.jpg
+webserver: done sending mary-spring-1024x768.jpg
+webserver: got new connection.
+webserver: got request for sorin-cashore-experimental-thumb.jpg
+webserver: done sending sorin-cashore-experimental-thumb.jpg
+webserver: got new connection.
+webserver: got request for sorin-cashore-experimental-1024x768.jpg
+webserver: done sending sorin-cashore-experimental-1024x768.jpg
+webserver: got new connection.
+webserver: got request for stadium-aerial-thumb.jpg
+webserver: done sending stadium-aerial-thumb.jpg
+webserver: got new connection.
+webserver: got request for stadium-aerial-1024x768.jpg
+webserver: done sending stadium-aerial-1024x768.jpg
+webserver: got new connection.
+webserver: got request for stadium-full-thumb.jpg
+webserver: done sending stadium-full-thumb.jpg
+webserver: got new connection.
+webserver: got request for stadium-full-1024x768.jpg
+webserver: done sending stadium-full-1024x768.jpg
+webserver: shutting down because idle too long
+shantanu_raj@ip-172-26-8-158:~/lab5/web_server$

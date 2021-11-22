@@ -1,0 +1,10 @@
+. Real estate officer can only add/remove an agent from Agents entity.
+
+---->When a Seller comes to the office to list a property for sale or rent, he/she will interact with an
+agent who is assigned by the office. That agent is responsible for managing the property and
+updating theseller table by the details of the owner.
+
+----->When a buyer visits the office to buy/rent a property, the office assigns an agent to the client
+based on his/her requirements(assuming requirements and assigning agent to be VERBAL). On
+a successful transaction of property the agent is responsible for updating property status and
+buyers entity with appropriate details.

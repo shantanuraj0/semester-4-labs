@@ -1,0 +1,144 @@
+insert into seller values
+(1001, "Shantanu",	"Raj",	9999999991),
+(1002	,"Shubham",	"Jhawar",	9999999992),
+(1003	,"Ritik",	"Rakesh",	9999999993),
+(1004	,"Karan",	"Kishore",	9999999994),
+(1005	,"Shashank",	"Pandey",	9999999995),
+(1006	,"Vivek",	"Pandit",	9999999996),
+(1007	,"Maitri",	"Agrawal",	9999999997),
+(1008	,"Soppa",	"Rafi",	9999999998),
+(1009	,"Dawood"	,"Jhawar",	9999999999),
+(1010	,"Rahul"	,"Das",	9999999910);
+
+
+mysql> insert into seller values
+    -> (1011, "Abhinav", "Kumar", 9999999911),
+    -> (1012, "Abhishek", "Anand", 9999999912),
+    -> (1013, "Mayank", "David", 9999999913),
+    -> (1014, "Davis", "Cyril", 9999999914),
+    -> (1015, "Manu", "Jaiswal", 9999999915),
+    -> (1016, "Aditya", "Swaroop", 9999999916),
+    -> (1017, "Swarup", "Goyal", 9999999917),
+    -> (1018, "Prem", "Prakash", 9999999918),
+    -> (1019, "Sunny", "Sumit", 9999999919),
+    -> (1020, "Gaurav", "Singh", 9999999920);
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+ insert into agent (a_id , firstname , lastname , is_admin , contact ) values
+     ( 1 , 'aman' , 'kushwaha' , 0 , 1234569870),
+     (2 , 'aman' ,'jain' , 0 , 1234567890) ,
+     (3 , 'anil','kumar',0 , 1233467098) ,
+     (4 , 'arun' , 'sidana' ,0 , 4567890123) ,
+     (5 , 'vaibhav' , 'jhawar' ,1 , 6969690012 ) ,
+     (6 , 'shubham' , 'goel' , 0 , 1265489078 ) ,
+     (7 , 'sanu' , 'ranjan' , 0 , 2345678917 ) ,
+     ( 8 , 'rahul' , 'patel' , 0 , 9178654326 ) ,
+     (9 , 'pritam' , 'agrawal' , 0 ,9835651234 ) ,
+     (10 ,'palak' , 'musk' , 0 , 9867895436 ) ;
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+Insert into buyer Values
+       (501,"Sunil","Shetty",8247839258),
+     (502,"Akshay","Khanna",9440763605),
+     (503,"Johnny","Khalifa",8742041471),
+     (504,"Ratan","Birla",9807654321),
+     (505,"Mia","Adam",9440763607),
+     (506,"Mukesh","Adani",8742045678),
+     (507,"Rahul","Modi",8742041356),
+     (508,"amit","ganguly",9876543210),
+     (509,"Mamta","Modiy",8907654321),
+     (510,"Gajab","Topibz",7896543211);
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+insert into property (p_id , area , bhk ,asked_price , locality ,city , rent_sell ,current_status , owner_id , a_id , price ) values
+     ( 10000 , 800 , 3 , 100000 , 'jhalukbari' ,'guwahati' ,'sell' , 'available_for_sell' ,1001 ,10 ,120000),
+     (10001 ,850 , 2 , 120000 , 'adabari' , 'guwahati' , 'sell' ,'available_for_sell' , 1002 , 9 , 150000) ,
+     (10002 , 900 , 4 , 90000 , 'mirza' , 'guwahati' ,'sell' , 'available_for_sell' , 1003 , 8 , 110000) ,
+     (10003 , 950 , 3 , 130000 , 'azara' , 'guwahati' ,'sell' , 'available_for_sell' , 1004 , 7 , 150000) ,
+     (10004 , 750 , 3 , 180000 , 'GS ROAD' , 'guwahati' ,'sell' , 'available_for_sell' , 1005 , 6 , 200000) ,
+     (10005 , 750 , 2 , 80000 , 'GS ROAD' , 'guwahati' ,'sell' , 'available_for_sell' , 1006 , 6 , 100000) ,
+     (10006 , 700 , 1 , 50000 , 'GS ROAD' , 'guwahati' ,'sell' , 'sold' , 1005 , 6 , 70000) ,
+     (10007 , 600 , 1 , 60000 , 'fancy bazaar' , 'guwahati' ,'sell' , 'sold' , 1004 , 5 , 70000) ,
+     (10008 , 900 , 2 , 80000 , 'fancy bazaar' , 'guwahati' ,'sell' , 'sold' , 1004 , 5 , 100000) ,
+     (10009 , 1000 , 4 , 170000 , 'ullubari' , 'guwahati' ,'sell' , 'sold' , 1003 , 4 , 200000) ,
+     (10010 , 1000 , 4 , 150000 , 'ullubari' , 'guwahati' ,'sell' , 'sold' , 1003 , 4 , 170000) ,
+     (10011 , 1100 , 2 , 15000 , 'bongora' , 'guwahati' ,'rent' , 'available_for_rent' , 1003 , 4 , 20000) ,
+     (10012 , 1100 , 2 , 17000 , 'IT PARK' , 'guwahati' ,'rent' , 'available_for_rent' , 1003 , 4 , 25000) ,
+     (10013 , 1000 , 1 , 19000 , 'zoo road' , 'guwahati' ,'rent' , 'available_for_rent' , 1002 , 3 , 25000) ,
+     (10014 , 1400 , 5 , 39000 , 'VIP' , 'guwahati' ,'rent' , 'available_for_rent' , 1002 , 3 , 25000) ,
+     (10015 , 1400 , 5 , 29000 , 'VIP' , 'guwahati' ,'rent' , 'rented' , 1001 , 2 , 35000) ,
+     (10016 , 1000 , 3 , 19000 , 'ganesh guri' , 'guwahati' ,'rent' , 'rented' , 1001 , 1 , 25000) ,
+     (10017 , 650 , 2 , 10000 , 'ganesh guri' , 'guwahati' ,'rent' , 'rented' , 1001 , 1 , 15000) ,
+     (10018 , 600 , 2 , 10000 , 'lakshmi guri' , 'guwahati' ,'rent' , 'rented' , 1007 , 2 , 15000) ,
+     (10019 , 900 , 3 , 20000 , 'fancy bazaar' , 'guwahati' ,'rent' , 'rented' , 1007 , 2 , 15000) ;
+
+
+insert into property (p_id , area , bhk ,asked_price , locality ,city , rent_sell ,current_status , owner_id , a_id , price ) values
+     (10020 , 700 , 3 , 200000 , 'fancy bazaar' , 'guwahati' ,'sell' , 'available_for_sell' , 1011 , 6 , 250000),
+     (10021 , 600 , 3 , 173000 , 'bongora' , 'guwahati' ,'sell' , 'available_for_sell' , 1012 , 7 , 200000),
+     (10022 , 1100 , 3 , 273000 , 'GS ROAD' , 'guwahati' ,'sell' , 'available_for_sell' , 1013 , 8 , 300000),
+     (10023 , 1100 , 3 , 173000 , 'mirza' , 'guwahati' ,'sell' , 'available_for_sell' , 1014 , 9 , 200000),
+     (10024 , 985 , 4 , 255000 , 'VIP' , 'guwahati' ,'sell' , 'available_for_sell' , 1015 , 10 , 280000),
+     (10025 , 580 , 1 , 105000 , 'ullubari' , 'guwahati' ,'sell' , 'sold' , 1016 , 10 , 120000),
+     (10026 , 880 , 2 , 145000 , 'adabari' , 'guwahati' ,'sell' , 'sold' , 1017 , 5 , 159000),
+     (10027 , 1080 , 3 , 137000 , 'bongora' , 'guwahati' ,'sell' , 'sold' , 1018 , 5 , 156000),
+     (10028 , 1180 , 3 , 177000 , 'ganesh guri' , 'guwahati' ,'sell' , 'sold' , 1019 , 4 , 196000),
+     (10029 , 1280 , 5 , 277000 , 'palas bari' , 'guwahati' ,'sell' , 'sold' , 1020 , 3 , 296000);
+
+
+insert into property(p_id, area, bhk, price, asked_price, locality, city, rent_sell, current_status, owner_id, a_id) values
+(10030, 500, 2, 10000, 9000, "fancy bazaar", "guwahati", "rent", "available_for_rent", 1012, 10),
+(10031, 900, 3, 16000, 15000, "azara", "guwahati", "rent", "rented", 1015, 9),
+(10032, 1500, 1, 20000, 18500, "VIP", "guwahati", "rent", "available_for_rent", 1019, 1),
+(10033, 1000, 4, 17000, 15500, "zoo road", "guwahati","rent", "available_for_rent", 1017, 3),
+(10034, 2000, 2, 20000, 17000, "mirza", "guwahati", "rent", "available_for_rent", 1016, 4),
+(10035, 1100, 3, 20000, 18500, "GS ROAD", "guwahati", "rent", "available_for_rent", 1014, 6),
+(10036, 850, 3, 15500, 14000, "ganesh guri", "guwahati", "rent", "rented", 1008, 7),
+(10037, 900, 3, 16000, 145000, "lakshmi guri", "guwahati", "rent", "rented", 1013, 8),
+(10038, 1150, 2, 18000, 16500, "adabari", "guwahti", "rent", "rented", 1016, 1),
+(10039, 700, 2, 12000, 11000, "mirza", "guwahati", "rent", "rented", 1020, 3);
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+insert into buyers_history (trans_id , sell_price , sell_date , a_id , p_id , buyer_id ) values
+     (100000 ,70000,'2021/1/1' ,6 , 10006 , 501 ) ,
+     (100001 ,70000,'2021/3/2' ,5 , 10007 , 502 ) ,
+     (100002 ,100000,'2021/2/7' ,5 , 10008 , 503 ) ,
+     (100003 ,200000,'2021/4/21' ,4 , 10009 , 507 ) ,
+     (100004 ,170000,'2021/2/14' ,4 , 10010 , 509 ) ;
+
+
+INSERT INTO BUYERS_HISTORY VALUES
+     (100005,120000,"2020-12-11",10,10025,504),
+     (100006,159000,"2020-12-23",5,10026,502),
+     (100007,156000,"2021-11-23",5,10027,505),
+     (100008,196000,"2020-10-23",4,10028,508),
+     (100009,296000,"2021-01-23",3,10029,509);
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+insert into renters_history values
+(200001, 35000, "2020-11-11", 2, 10015, 502),
+(200002, 25000, "2020-12-05", 1, 10016, 507),
+(200003, 15000, "2020-12-10", 1, 10017, 501),
+(200004, 15000, "2020-12-11", 2, 10018, 503),
+(200005, 15000, "2020-12-21", 2, 10019, 509);
+
+insert into renters_history values
+     (200006,15500,"2021-02-12",7,10036,504),
+     (200007,16000,"2021-01-12",9,10031,505),
+     (200008,16000,"2021-04-01",8,10037,508),
+     (200009,18000,"2021-03-01",1,10038,503),
+     (200010,12000,"2021-03-15",3,10039,507);
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ insert into login values("vaibhav","jhawar123",5),("shubham","goel123",6),("sanu","ranjan154",7),("rahul","patel143",8),("pritam","agarwal_bsd",9),("palak","musk",10);
+ insert into login values("aman","aman_mc",1);
+ insert into login values("amanwa","aman_mcj",2);
+ insert into login values("anil","anil_mcj",3);
+ insert into login values("arun","sid",4);
+
+
+
+
+

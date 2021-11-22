@@ -1,0 +1,59 @@
+
+
+1.
+
+
+
+mysql> delimiter //
+mysql> create function stud_count (fname varchar(30))
+    -> returns integer Deterministic
+    ->
+    ->  begin
+    ->
+    -> declare s_count integer;
+    ->
+    -> select count( distinct e.snum) into s_count from  enrolled e , class c , faculty f
+    -> where e.cname =c.name and f.fid = c.fid and f.fname= fname;
+    ->
+    -> return s_count;
+    -> end ;//
+Query OK, 0 rows affected (0.03 sec)
+
+ select f.fname from faculty f where stud_count(f.fname) >1;//
++-----------------+
+| fname           |
++-----------------+
+| Ivana Teach     |
+| Richard Jackson |
+| Linda Davis     |
++-----------------+
+3 rows in set (0.03 sec)
+
+
+2.
+
+
+
+mysql> delimiter //
+mysql> create function student_fail_count ( cname varchar(40))
+    -> returns integer Deterministic
+    ->  begin
+    ->
+    -> declare s_count integer;
+    ->
+    -> select count(distinct e.snum) into s_count from enrolled e
+    -> where e.cname=cname and e.grade='F';
+    ->
+    -> return s_count;
+    -> end ;//
+Query OK, 0 rows affected (0.03 sec)
+
+
+mysql> select f.fname from faculty f , class c where
+    -> c.fid = f.fid and student_fail_count(c.name) >1;//
++-------------+
+| fname       |
++-------------+
+| Linda Davis |
++-------------+
+1 row in set (0.01 sec)

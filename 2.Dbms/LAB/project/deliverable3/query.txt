@@ -1,0 +1,117 @@
+
+a) Find addresses of homes in your city (for example Guwahati) with rent between Rs.20,000 and Rs. 40,000 per
+month.
+
+
+select locality from property where city ='guwahati' and current_status ='available_for_rent' and ( price >= 20000 or price <= 30000);
++--------------+
+| locality     |
++--------------+
+| bongora      |
+| IT PARK      |
+| zoo road     |
+| VIP          |
+| fancy bazaar |
+| VIP          |
+| zoo road     |
+| mirza        |
+| GS ROAD      |
++--------------+
+9 rows in set (0.01 sec)
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+b)Find details of homes for rent in VIP (you can use the name of another locality if your city is different)
+with at least 2 bedrooms and costing less than Rs.50,000 per month. Show the contact number(s) of agents
+who can show you these properties.
+
+
+select area , bhk ,contact from property p ,agent a  where a.a_id = p.a_id and  city ='guwahati' and current_status ='available_for_rent' and  price <= 50000 and locality='VIP' and bhk>=2;
++------+------+------------+
+| area | bhk  | contact    |
++------+------+------------+
+| 1400 |    5 | 1233467098 |
++------+------+------------+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+c)Find the name of the agent who has sold the most property in the year 2021 by total amount in rupees.
+
+
+
+ select a.firstname, a.lastname
+     from buyers_history as bh, agent as a
+     where bh.a_id = a.a_id and extract(year from bh.sell_date) = "2021"
+     group by bh.a_id
+     order by sum(bh.sell_price) desc
+     limit 1
+     ;
++-----------+----------+
+| firstname | lastname |
++-----------+----------+
+| arun      | sidana   |
++-----------+----------+	
+
+
+ With max_sell_price as
+              ( select a_id,sum(sell_price) as sold_property from buyers_history where extract(year from buyers_history.sell_date) = "2021"  group by a_id)
+               select firstname,lastname from agent where a_id =(select a_id from max_sell_price where sold_property = (select max(sold_property) from max_sell_price));
++-----------+----------+
+| firstname | lastname |
++-----------+----------+
+| arun      | sidana   |
++-----------+----------+
+1 row in set (0.00 sec)
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+d) Find the addresses of homes in your city that are available for sale and that has at least 2 bed rooms. List the
+asking price and the number of bedrooms, with other details that may be necessary.
+
+
+
+ select * from property where city='guwahati' and current_status='available_for_sell' and bhk>=2 ;
++-------+------+------+-------------+--------------+----------+-----------+--------------------+----------+------+--------+
+| p_id  | area | bhk  | asked_price | locality     | city     | rent_sell | current_status     | owner_id | a_id | price  |
++-------+------+------+-------------+--------------+----------+-----------+--------------------+----------+------+--------+
+| 10000 |  800 |    3 |      100000 | jhalukbari   | guwahati | sell      | available_for_sell |     1001 |   10 | 120000 |
+| 10001 |  850 |    2 |      120000 | adabari      | guwahati | sell      | available_for_sell |     1002 |    9 | 150000 |
+| 10002 |  900 |    4 |       90000 | mirza        | guwahati | sell      | available_for_sell |     1003 |    8 | 110000 |
+| 10003 |  950 |    3 |      130000 | azara        | guwahati | sell      | available_for_sell |     1004 |    7 | 150000 |
+| 10004 |  750 |    3 |      180000 | GS ROAD      | guwahati | sell      | available_for_sell |     1005 |    6 | 200000 |
+| 10005 |  750 |    2 |       80000 | GS ROAD      | guwahati | sell      | available_for_sell |     1006 |    6 | 100000 |
+| 10020 |  700 |    3 |      200000 | fancy bazaar | guwahati | sell      | available_for_sell |     1011 |    6 | 250000 |
+| 10021 |  600 |    3 |      173000 | bongora      | guwahati | sell      | available_for_sell |     1012 |    7 | 200000 |
+| 10022 | 1100 |    3 |      273000 | GS ROAD      | guwahati | sell      | available_for_sell |     1013 |    8 | 300000 |
+| 10023 | 1100 |    3 |      173000 | mirza        | guwahati | sell      | available_for_sell |     1014 |    9 | 200000 |
+| 10024 |  985 |    4 |      255000 | VIP          | guwahati | sell      | available_for_sell |     1015 |   10 | 280000 |
++-------+------+------+-------------+--------------+----------+-----------+--------------------+----------+------+--------+
+11 rows in set (0.00 sec)
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+e)) List the details of the most expensive houses and the houses with the highest rent, in the database.
+
+
+
+select * from property where  price = (select MAX(price) from property where rent_sell ='sell')
+               UNION
+               select * from property where  price = (select MAX(price) from property where rent_sell ='rent');
++-------+------+------+-------------+----------+----------+-----------+--------------------+----------+------+--------+
+| p_id  | area | bhk  | asked_price | locality | city     | rent_sell | current_status     | owner_id | a_id | price  |
++-------+------+------+-------------+----------+----------+-----------+--------------------+----------+------+--------+
+| 10022 | 1100 |    3 |      273000 | GS ROAD  | guwahati | sell      | available_for_sell |     1013 |    8 | 300000 |
+| 10015 | 1400 |    5 |       29000 | VIP      | guwahati | rent      | rented             |     1001 |    2 |  35000 |
++-------+------+------+-------------+----------+----------+-----------+--------------------+----------+------+--------+
+2 rows in set (0.03 sec)
+
